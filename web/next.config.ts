@@ -3,15 +3,31 @@ import type { NextConfig } from "next";
 /**
  * Next.js config for the WE&ME frontend.
  *
- * `images.remotePatterns` is the allowlist for next/image — the
- * WordPress media domain is the only one we trust. Add more patterns
- * (e.g. an image CDN later) by appending entries here.
+ * Two deployment modes:
+ *   - Production with live WordPress → dynamic SSR, ISR (revalidate)
+ *   - Static export (GitHub Pages) → `next build` produces `out/`,
+ *     pages are pre-rendered at build time, no server needed
+ *
+ * For the GitHub Pages deploy, set `NEXT_PUBLIC_USE_DEMO_DATA=1` at
+ * build time so the static pages render the seed data even when
+ * the WordPress REST API isn't reachable from the build runner.
  */
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
+  // `output: 'export'` enables full static export for the GitHub
+  // Pages demo. When deploying to Nessus (live WP) we keep ISR
+  // available, so this stays on in this build. To go back to the
+  // dynamic ISR mode for production, comment out the next two lines
+  // and set `unoptimized: false` below.
+  output: "export",
+  trailingSlash: true,
+
   images: {
+    // Unoptimized is required for `output: 'export'`. With a live
+    // server we keep optimization on for the WP-served image proxy.
+    unoptimized: process.env.NEXT_PUBLIC_USE_DEMO_DATA === "1",
     remotePatterns: [
       { protocol: "https", hostname: "www.weandmecfs.org" },
       { protocol: "https", hostname: "weandmecfs.org" },
@@ -34,9 +50,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-
-  // ISR: pages that have no explicit `revalidate` get this default.
-  // Per-page revalidate is set in app/page.tsx and app/about/page.tsx.
 };
 
 export default nextConfig;

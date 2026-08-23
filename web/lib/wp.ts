@@ -15,6 +15,16 @@
  */
 
 import { z } from "zod";
+import {
+  DEMO_STORIES,
+  DEMO_CALLS,
+  DEMO_PROJECTS,
+  DEMO_TEAM,
+  DEMO_GUARDIANS,
+  DEMO_POSTS,
+  DEMO_ABOUT_PAGE,
+  USE_DEMO_DATA,
+} from "./demo-data";
 
 export const WP_BASE_URL = process.env.WP_BASE_URL
   ?? (process.env.NODE_ENV === "development"
@@ -189,46 +199,55 @@ async function wpFetch<T>(
 export const homepageRevalidate = 60; // seconds
 
 export async function getStories(): Promise<Story[]> {
+  if (USE_DEMO_DATA) return DEMO_STORIES;
   return wpFetch(
     "/story?per_page=12&orderby=menu_order&order=asc&_embed=1",
     z.array(StorySchema),
-    { revalidate: homepageRevalidate, tags: ["story", "homepage"] },
+    { revalidate: homepageRevalidate, tags: ["story", "homepage"], fallback: DEMO_STORIES },
   );
 }
 
 export async function getCalls(): Promise<Call[]> {
+  if (USE_DEMO_DATA) return DEMO_CALLS;
   return wpFetch(
     "/call?per_page=20&orderby=menu_order&order=asc",
     z.array(CallSchema),
-    { revalidate: homepageRevalidate, tags: ["call", "homepage"] },
+    { revalidate: homepageRevalidate, tags: ["call", "homepage"], fallback: DEMO_CALLS },
   );
 }
 
 export async function getProjects(): Promise<Project[]> {
+  if (USE_DEMO_DATA) return DEMO_PROJECTS;
   return wpFetch(
     "/project?per_page=20&orderby=menu_order&order=asc",
     z.array(ProjectSchema),
-    { revalidate: homepageRevalidate, tags: ["project", "homepage"] },
+    { revalidate: homepageRevalidate, tags: ["project", "homepage"], fallback: DEMO_PROJECTS },
   );
 }
 
 export async function getGuardians(): Promise<Guardian[]> {
+  if (USE_DEMO_DATA) return DEMO_GUARDIANS;
   return wpFetch(
     "/guardian?per_page=12&orderby=menu_order&order=asc&_embed=1",
     z.array(GuardianSchema),
-    { revalidate: homepageRevalidate, tags: ["guardian", "homepage"] },
+    { revalidate: homepageRevalidate, tags: ["guardian", "homepage"], fallback: DEMO_GUARDIANS },
   );
 }
 
 export async function getTeam(): Promise<TeamMember[]> {
+  if (USE_DEMO_DATA) return DEMO_TEAM;
   return wpFetch(
     "/team?per_page=40&orderby=menu_order&order=asc&_embed=1",
     z.array(TeamMemberSchema),
-    { revalidate: 300, tags: ["team"] },
+    { revalidate: 300, tags: ["team"], fallback: DEMO_TEAM },
   );
 }
 
 export async function getPageBySlug(slug: string): Promise<WPPage | null> {
+  if (USE_DEMO_DATA) {
+    if (slug === "about") return DEMO_ABOUT_PAGE;
+    return null;
+  }
   const pages = await wpFetch(
     `/pages?slug=${encodeURIComponent(slug)}`,
     z.array(PageSchema),
@@ -238,9 +257,10 @@ export async function getPageBySlug(slug: string): Promise<WPPage | null> {
 }
 
 export async function getLatestPosts(count = 5): Promise<WPPost[]> {
+  if (USE_DEMO_DATA) return DEMO_POSTS;
   return wpFetch(
     `/posts?per_page=${count}&orderby=date&order=desc&_embed=1`,
     z.array(PostSchema),
-    { revalidate: 120, tags: ["post", "homepage"] },
+    { revalidate: 120, tags: ["post", "homepage"], fallback: DEMO_POSTS },
   );
 }
