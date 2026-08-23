@@ -1,0 +1,19 @@
+/*
+Theme Name: WE&ME Headless
+Theme URI: https://www.weandmecfs.org
+Author: WE&ME Foundation
+Description: A minimal WordPress theme that delegates all front-end rendering
+             to the Next.js frontend at the same domain. The WordPress
+             installation is still used for content authoring (CPTs, media,
+             users) and as a REST/GraphQL data source. The Nginx reverse
+             proxy in front of this server routes the marketing site
+             (everything that isn't /wp-admin, /wp-json or /wp-content) to
+             the Next.js process, so this theme only ever serves a 410-style
+             "moved" message in case a request slips through.
+Version: 0.1.0
+Requires at least: 6.5
+Tested up to: 7.0
+Requires PHP: 8.1
+License: GPL-2.0-or-later
+Text Domain: weandme-headless
+*/
