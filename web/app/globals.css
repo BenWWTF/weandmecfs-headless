@@ -10,41 +10,17 @@
  * --------------------------------------------------------------------- */
 
 /* Klarheit Grotesk — licensed to WE&ME Foundation.
- * Self-hosted in /public/fonts/. Drop the four woff2 files in there and
- * they take over automatically; General Sans stays in the stack as a
- * stand-in during dev. */
-@font-face {
-  font-family: "Klarheit Grotesk";
-  src: url("/fonts/klarheit-grotesk-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Klarheit Grotesk";
-  src: url("/fonts/klarheit-grotesk-medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Klarheit Grotesk";
-  src: url("/fonts/klarheit-grotesk-semibold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Klarheit Grotesk";
-  src: url("/fonts/klarheit-grotesk-bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+ *
+ * Loaded via `next/font/local` in `app/layout.tsx`. next/font bundles
+ * the file at build time and emits the @font-face with basePath-aware
+ * URLs, so the font keeps working when the site is deployed under a
+ * subpath (e.g. /weandmecfs-headless/ on GitHub Pages). The
+ * `--font-klarheit` CSS variable is injected by the next/font
+ * runtime; we wire it into the design tokens below. */
 
 @theme inline {
-  --font-sans: "Klarheit Grotesk", "General Sans", system-ui, -apple-system,
-    "Segoe UI", sans-serif;
+  --font-sans: var(--font-klarheit), "Klarheit Grotesk", "General Sans",
+    system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-sans);
   --font-serif: var(--font-sans);
   --font-mono: var(--font-sans);

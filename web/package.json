@@ -9,7 +9,7 @@
     "start": "next start --port 3000",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "deploy:gh-pages": "NEXT_PUBLIC_USE_DEMO_DATA=1 next build && gh-pages -d out -b gh-pages --no-history --message \"Deploy static site\""
+    "deploy:gh-pages": "NEXT_PUBLIC_USE_DEMO_DATA=1 NEXT_PUBLIC_BASE_PATH=/weandmecfs-headless next build && gh-pages -d out -b gh-pages --no-history --message \"Deploy static site\""
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

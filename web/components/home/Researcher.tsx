@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getTeam } from "@/lib/wp";
 import { decodeHtml } from "@/lib/decode";
+import { withBasePath } from "@/lib/basePath";
 
 /**
  * "From the lab" — the researcher quote section. We pull the
@@ -23,7 +24,7 @@ export async function Researcher() {
     : "ME/CFS has never lacked patients or questions, only funding. WE&ME is taking that seriously, with real rigour.";
   const x_handle = featured?.x_handle ?? "VirusesImmunity";
   const photo    = featured?._embedded?.["wp:featuredmedia"]?.[0]?.source_url
-    ?? "/images/researcher-portrait.jpg";
+    ?? withBasePath("/images/researcher-portrait.jpg");
 
   return (
     <section className="bg-[#f0f6ef]">

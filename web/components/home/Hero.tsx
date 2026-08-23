@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { withBasePath } from "@/lib/basePath";
 
 const DONATE_URL = "https://donate.weandmecfs.org/en-us/";
 
 // Real hero image — `hero-bed.jpg` from the GitHub mockup, downloaded
 // from the Lovable CDN during the rebuild.
-const HERO_IMAGE = "/images/hero.jpg";
+const HERO_IMAGE = withBasePath("/images/hero.jpg");
 
 /**
  * Homepage hero. Photo of a person with ME/CFS, sitting up in bed by

@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { withBasePath } from "@/lib/basePath";
 
 // The "Step by step" walker animation, downloaded from the Lovable
 // CDN during the rebuild. The mockup uses this as a single self-
 // contained webm that scrubs with scroll position.
-const BARS_VIDEO = "/videos/divider-bars.webm";
+const BARS_VIDEO = withBasePath("/videos/divider-bars.webm");
 
 /**
  * "Step by step" — the figure walks along a baseline as the user scrolls.

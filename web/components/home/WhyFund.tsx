@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +10,7 @@ import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { Call, Project } from "@/lib/wp";
 import { decodeHtml } from "@/lib/decode";
 import { formatEuro } from "@/lib/utils";
+import { withBasePath } from "@/lib/basePath";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger, DrawSVGPlugin);
@@ -111,8 +113,14 @@ function PartnerLogo({
       rel="noreferrer"
       className="inline-flex items-center opacity-90 transition hover:opacity-100"
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} loading="lazy" className={`w-auto ${className}`} />
+      <Image
+        src={src}
+        alt={alt}
+        width={200}
+        height={60}
+        unoptimized
+        className={`w-auto h-auto ${className}`}
+      />
     </a>
   );
 }
@@ -272,13 +280,13 @@ function NodeContent({
               <p className={NODE_LABEL}>Process</p>
               <div className="mt-3 flex flex-nowrap items-center gap-x-6">
                 <PartnerLogo
-                  src="/brand/fwf-logo.svg"
+                  src={withBasePath("/brand/fwf-logo.svg")}
                   alt="FWF — Der Wissenschaftsfonds"
                   href="https://www.fwf.ac.at/en/"
                   className="h-[38px] md:h-11"
                 />
                 <PartnerLogo
-                  src="/brand/wwtf-logo.svg"
+                  src={withBasePath("/brand/wwtf-logo.svg")}
                   alt="WWTF — Vienna Science and Technology Fund"
                   href="https://wwtf.at/"
                   className="h-[26px] md:h-[30px]"

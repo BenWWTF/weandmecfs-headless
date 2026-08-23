@@ -10,11 +10,23 @@ import type { NextConfig } from "next";
  *
  * For the GitHub Pages deploy, set `NEXT_PUBLIC_USE_DEMO_DATA=1` at
  * build time so the static pages render the seed data even when
- * the WordPress REST API isn't reachable from the build runner.
+ * the WordPress REST API isn't reachable from the build runner,
+ * and apply the basePath so all asset / link URLs point under
+ * /weandmecfs-headless/.
  */
+const isDemoBuild = process.env.NEXT_PUBLIC_USE_DEMO_DATA === "1";
+const BASE_PATH = isDemoBuild ? "/weandmecfs-headless" : "";
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+
+  // basePath rewrites <Link>, <Image>, script, and CSS asset URLs so
+  // that the static export serves correctly from the GitHub Pages
+  // subpath /weandmecfs-headless/. In live-WP mode (Nessus deploy)
+  // the site lives at the domain root, so basePath stays empty.
+  basePath: BASE_PATH,
+  assetPrefix: BASE_PATH,
 
   // `output: 'export'` enables full static export for the GitHub
   // Pages demo. When deploying to Nessus (live WP) we keep ISR
@@ -27,7 +39,7 @@ const nextConfig: NextConfig = {
   images: {
     // Unoptimized is required for `output: 'export'`. With a live
     // server we keep optimization on for the WP-served image proxy.
-    unoptimized: process.env.NEXT_PUBLIC_USE_DEMO_DATA === "1",
+    unoptimized: isDemoBuild,
     remotePatterns: [
       { protocol: "https", hostname: "www.weandmecfs.org" },
       { protocol: "https", hostname: "weandmecfs.org" },

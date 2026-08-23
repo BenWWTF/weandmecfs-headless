@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { withBasePath } from "@/lib/basePath";
 
 // Local illustration from the Lovable mockup, downloaded via the
 // project token during the rebuild.
-const ILLU = "/images/illustrations/illustrations-1.svg";
+const ILLU = withBasePath("/images/illustrations/illustrations-1.svg");
 
 /**
  * "What is ME/CFS?" empathy-banded section. Static copy in session 1.

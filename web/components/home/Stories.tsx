@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SliderImage } from "@/components/ui/SliderImage";
 import { getStories } from "@/lib/wp";
 import { decodeHtml } from "@/lib/decode";
+import { withBasePath } from "@/lib/basePath";
 
 /**
  * Patient stories rail. Pulls the `story` CPT from WordPress and
@@ -17,11 +18,11 @@ import { decodeHtml } from "@/lib/decode";
 // only shows the first 3 stories; we have fallbacks for all 5 we
 // seeded so the rail is full even before editors upload their own.
 const STORY_FALLBACKS: Record<string, string> = {
-  "mila-hermisson":            "/images/stories/mila.jpg",
-  "carmen-rinnhofer":          "/images/stories/carmen.jpg",
-  "yvonne-anreitter":          "/images/stories/yvonne.jpg",
-  "madeleine-martos":          "/images/stories/madeleine.jpg",
-  "petra-schaschl-petersmann": "/images/stories/petra.jpg",
+  "mila-hermisson":            withBasePath("/images/stories/mila.jpg"),
+  "carmen-rinnhofer":          withBasePath("/images/stories/carmen.jpg"),
+  "yvonne-anreitter":          withBasePath("/images/stories/yvonne.jpg"),
+  "madeleine-martos":          withBasePath("/images/stories/madeleine.jpg"),
+  "petra-schaschl-petersmann": withBasePath("/images/stories/petra.jpg"),
 };
 
 export async function Stories() {
@@ -32,7 +33,7 @@ export async function Stories() {
       line:       s.short_bio ?? decodeHtml(s.excerpt?.rendered ?? ""),
       img:        s._embedded?.["wp:featuredmedia"]?.[0]?.source_url
                   ?? STORY_FALLBACKS[s.slug]
-                  ?? "/images/stories/mila.jpg",
+                  ?? withBasePath("/images/stories/mila.jpg"),
       href:       s.long_story_url ?? `https://www.weandmecfs.org/${s.slug}/`,
     }));
 

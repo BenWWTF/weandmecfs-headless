@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { getLatestPosts } from "@/lib/wp";
 import { decodeHtml } from "@/lib/decode";
+import { withBasePath } from "@/lib/basePath";
 
 const FALLBACK_IMAGES = [
-  "/images/post-header.jpg",
-  "/images/detail-hand.jpg",
-  "/images/portrait-rest.jpg",
-  "/images/portrait-look.jpg",
+  withBasePath("/images/post-header.jpg"),
+  withBasePath("/images/detail-hand.jpg"),
+  withBasePath("/images/portrait-rest.jpg"),
+  withBasePath("/images/portrait-look.jpg"),
 ];
 
 /**
