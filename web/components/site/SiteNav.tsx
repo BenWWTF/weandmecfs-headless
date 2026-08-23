@@ -11,13 +11,15 @@ type Group = { label: string; href: string; hash?: string; items: Sub[] };
 const groups: Group[] = [
   {
     label: "About Us",
-    href: "/about",
+    // Foundation (mission, story, team, partners, transparency) lives
+    // on its own page now — the old `/about` content moved there.
+    href: "/foundation",
     items: [
-      { label: "Our Mission",       href: "/about#mission" },
-      { label: "Our Story",         href: "/about#story" },
-      { label: "Our Team & Boards", href: "/about#about-board" },
-      { label: "Partners",          href: "/about#partners" },
-      { label: "Transparency",      href: "/about#transparency" },
+      { label: "Our Mission",       href: "/foundation#mission" },
+      { label: "Our Story",         href: "/foundation#story" },
+      { label: "Our Team & Boards", href: "/foundation#team" },
+      { label: "Partners",          href: "/foundation#partners" },
+      { label: "Transparency",      href: "/foundation#transparency" },
     ],
   },
   {
@@ -26,7 +28,7 @@ const groups: Group[] = [
     items: [
       { label: "What is ME/CFS?",       href: "/about#what" },
       { label: "Who develops ME/CFS?",  href: "/about#who" },
-      { label: "Severity & burden",     href: "/about#severity" },
+      { label: "Severity & disease burden", href: "/about#severity" },
       { label: "Course, diagnosis & treatment", href: "/about#course" },
       { label: "Terminology & comorbidities",   href: "/about#terminology" },
       { label: "Living with ME/CFS",    href: "/stories" },
@@ -42,24 +44,26 @@ const groups: Group[] = [
     items: [
       { label: "Research strategy",           href: "/research#strategy" },
       { label: "WE&ME Projects",              href: "/research#projects" },
-      { label: "Emerging Leader Award",       href: "/research#award" },
+      { label: "WE&ME Emerging Leader Award", href: "/research#award" },
+      { label: "ME/CFS Fellowships",          href: "/research#fellowships" },
       { label: "All funded research",         href: "/research#funded" },
-      { label: "Call for proposals",          href: "/research#calls" },
+      { label: "Call for proposals",          href: "/research#proposals" },
     ],
   },
   {
     label: "News",
-    href: "/news",
+    // Renamed from /news to /blog per the upstream mockup rename.
+    href: "/blog",
     items: [
-      { label: "Latest News",  href: "/news#news" },
-      { label: "Events",       href: "/news#events" },
-      { label: "Newsletter",   href: "/news#newsletter" },
-      { label: "Archive",      href: "/news#archive" },
+      { label: "Latest News",  href: "/blog#news" },
+      { label: "Events",       href: "/blog#events" },
+      { label: "Newsletter",   href: "/blog#newsletter" },
+      { label: "Archive",      href: "/blog#archive" },
     ],
   },
   {
     label: "Notes on ME/CFS",
-    href: "/news",
+    href: "/blog",
     hash: "notes",
     items: [],
   },
@@ -69,8 +73,8 @@ const groups: Group[] = [
     items: [
       { label: "Donations",                   href: "/support#donations" },
       { label: "Become a Guardian",           href: "/support#guardian" },
-      { label: "Awareness & Info Materials",  href: "/support#materials" },
-      { label: "Shop",                        href: "/support#shop", tag: "Soon" },
+      { label: "Awareness & Information Materials", href: "/support#materials" },
+      { label: "Shop",                        href: "/shop", tag: "Soon" },
     ],
   },
 ];

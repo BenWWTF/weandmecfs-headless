@@ -97,6 +97,64 @@ function DocLink({ href, label }: { href: string; label: string }) {
   );
 }
 
+/* ---------- ME/CFS Fellowships 2026 ---------- *
+ * Mirrors the public announcement on the live site. Editors can
+ * extend this list with each new cohort; once the WP Fellowship
+ * CPT exists (session 4) these constants become the demo fallback. */
+const FELLOWSHIPS_2026 = [
+  {
+    name: "Karen Giménez Orenga",
+    org: "Universidad Católica de Valencia",
+    title: "Uncovering the Genetic Contribution of Human Endogenous Retroviruses to ME/CFS",
+    amount: "€39,504",
+  },
+  {
+    name: "Leonardo Vincenzi",
+    org: "Medical University of Vienna",
+    title: "Mendelian Randomization for Evaluating Medicines and Approved Pharmacotherapies in ME/CFS",
+    amount: "€37,884",
+  },
+  {
+    name: "Daniel Garcia De Otazo Hernandez",
+    org: "TU Vienna",
+    title: "The sweet side of ME/CFS treatment: Glycan analysis in Korean medicine",
+    amount: "€40,000",
+  },
+  {
+    name: "Maria Ljungström",
+    org: "Medical University of Vienna",
+    title: "Persistent Platelet-Monocyte CrossTalk Underlies Failure to Resolve Inflammation and Symptoms in ME/CFS",
+    amount: "—",
+  },
+  {
+    name: "Franziska Schoenknecht",
+    org: "Medical University of Vienna",
+    title: "Decoding B-cell repertoires in ME/CFS and post-acute infection syndromes",
+    amount: "€38,283",
+  },
+  {
+    name: "Léa Hoarau",
+    org: "Universidad Católica de Valencia",
+    title: "Blood-based epigenetic biomarkers for ME/CFS endotypes",
+    amount: "€37,500",
+  },
+  {
+    name: "Mireia Bañuls",
+    org: "Universidad Católica de Valencia",
+    title: "Mitochondrial function and metabolomic signatures in ME/CFS patient-derived cells",
+    amount: "€40,000",
+  },
+];
+
+const FELLOWSHIP_JURY = [
+  "Chris Ponting (Chair) · University of Edinburgh, UK",
+  "Alba Azola · Johns Hopkins Hospital, US",
+  "Resia Pretorius · Stellenbosch University, SA",
+  "Elisa Oltra · Catholic University of Valencia, ES",
+  "David Putrino · Icahn School of Medicine, Mount Sinai, US",
+  "Keith Geraghty · University of Manchester, UK",
+];
+
 export default async function ResearchPage() {
   // Pull live data for the funded projects and open calls so the
   // editors can update the WP admin and the page reflects it.
@@ -333,6 +391,72 @@ export default async function ResearchPage() {
               <DocLink
                 href="https://www.weandmecfs.org/emerging-leader-award/"
                 label="Award details"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* ------------------------------------------------- fellowships */}
+        <section id="fellowships" className="scroll-mt-24 bg-empathy">
+          <div className={WRAP}>
+            <p className={EYEBROW}>ME/CFS Fellowships</p>
+            <h2 className={`${HEADLINE} mt-3`}>
+              Time to do
+              <br />
+              the science.
+            </h2>
+            <p className={`mt-5 ${BODY} max-w-[60ch]`}>
+              With this funding instrument, the WE&amp;ME Foundation and the
+              WWTF support accompanying projects on a smaller scale, primarily
+              within existing programmes. The &ldquo;ME/CFS Call 2026 –
+              Fellowships&rdquo; was published on 14 October 2025 by the WWTF
+              together with the WE&amp;ME Foundation and is aimed at young
+              scientists in the field of ME/CFS who would like to complete
+              a six-month research stay at a research institution in Vienna,
+              Lower Austria or abroad. The aim of the programme is to
+              strengthen the international ME/CFS community, promote
+              excellent young scientists and further expand professional
+              exchange.
+            </p>
+            <p className={`mt-4 ${BODY} max-w-[60ch]`}>
+              Funded by WE&amp;ME and the WWTF, supported among others by
+              the Vienna Philharmonic Orchestra. A total of €233,171 was
+              awarded across 7 submissions. The international jury met on 11
+              March 2026; the formal decision by the WWTF Board followed on
+              31 March 2026.
+            </p>
+
+            <Block title="Funded projects 2026">
+              <ul className="mt-4 divide-y divide-ink/15 border-t border-b border-ink/15">
+                {FELLOWSHIPS_2026.map((f) => (
+                  <li key={f.name} className="py-5">
+                    <p className="text-[17px] font-semibold leading-[1.3]">
+                      {f.name}
+                      <span className="font-normal text-ink/60">
+                        {" "}· {f.org}
+                      </span>
+                    </p>
+                    <p className={`mt-1 ${BODY} max-w-[68ch] italic`}>
+                      {f.title}
+                    </p>
+                    {f.amount !== "—" && (
+                      <p className="mt-1 text-[14px] tabular-nums text-ink/60">
+                        Funding amount: {f.amount}
+                      </p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </Block>
+
+            <Block title="Jury">
+              <Bullets items={FELLOWSHIP_JURY} />
+            </Block>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <DocLink
+                href="https://www.weandmecfs.org/me-cfs-fellowships-2026-vergeben/"
+                label="Fellowships announcement"
               />
             </div>
           </div>

@@ -4,18 +4,18 @@ import { Logo } from "./Logo";
 type Item = { label: string; href: string };
 
 const foundation: Item[] = [
-  { label: "About",            href: "/about" },
-  { label: "Team & boards",    href: "/about#about-board" },
+  { label: "About Us",         href: "/foundation" },
+  { label: "Team & boards",    href: "/foundation#team" },
+  { label: "What is ME/CFS?",  href: "/about" },
   { label: "Funded research",  href: "/research" },
-  { label: "Annual reports",   href: "#" },
-  { label: "Press",            href: "#" },
+  { label: "Annual reports",   href: "/foundation#transparency" },
 ];
 
 const involved: Item[] = [
   { label: "Donate",          href: "/support#donations" },
   { label: "Become a Guardian", href: "/support#guardian" },
   { label: "Stories",         href: "/stories" },
-  { label: "Newsletter",      href: "/news#newsletter" },
+  { label: "Newsletter",      href: "/blog#newsletter" },
   { label: "Contact",         href: "mailto:contact@weandmecfs.org" },
 ];
 

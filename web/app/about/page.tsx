@@ -1,296 +1,314 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getPageBySlug, getTeam } from "@/lib/wp";
-import { decodeHtml } from "@/lib/decode";
 import { withBasePath } from "@/lib/basePath";
-import type { TeamMember } from "@/lib/wp";
 
 export const revalidate = 300;
 
 export async function generateMetadata() {
-  const page = await getPageBySlug("about");
   return {
-    title: page ? decodeHtml(page.title.rendered) : "About Us",
+    title: "About ME/CFS — WE&ME Foundation",
     description:
-      "The WE&ME Foundation was founded in 2020 by the Ströck family. Two of their three sons, Christoph and Philipp, live with ME/CFS. The family personally covers every operating cost so that 100% of donations fund research.",
+      "Myalgic encephalomyelitis / chronic fatigue syndrome is a debilitating disease affecting 20M+ people worldwide. Learn what it is, and what it isn't.",
   };
 }
 
-const ABOUT_HERO_IMAGE = withBasePath("/images/about-hero.jpg");
+const ILLU = withBasePath("/images/illustrations/illustrations-1.svg");
+const PORTRAIT_REST = withBasePath("/images/portrait-rest.jpg");
+const STORY_MILA = withBasePath("/images/stories/mila.jpg");
 
-/* Story copy pulled from the live site (https://www.weandmecfs.org/about/#our-history).
- * Editors can override the body via the WordPress `about` page once it's set up —
- * for now we ship the live copy as the source of truth. */
-const STORY_PARAGRAPHS = [
-  "The WE&ME Foundation (formerly the TEMPI Foundation) was founded in 2020 by the Ströck family and is based in Vienna, Austria, where the family is known for its “Ströck” bakeries, which have been delighting customers with their baked goods for generations. The Ströck family’s journey has been profoundly shaped by the impact of ME/CFS, which has defined the nature and purpose of the WE&ME Foundation with unwavering determination.",
-  "Two brothers, Christoph and Philipp Ströck, both of whom are affected by ME/CFS, lead the foundation’s mission. Christoph, the younger brother, was diagnosed in 2016 after years of illness, and his condition worsened due to misconceptions about ME/CFS. In 2018, Philipp, the older brother, was also diagnosed. The family learned firsthand that there are very few doctors who are knowledgeable about the diagnosis and treatment of ME/CFS. Over the years, the Ströck family became aware of the extent of the shortcomings in social security and support for the millions of ME/CFS patients.",
-  "The ongoing shortage of qualified professionals in this field has left patients to fend for themselves when it comes to diagnosis and the necessary support — a situation that often leads to an irreversible deterioration in their health. In many cases, they are unable to return to work, which leads to a lack of social support. The situation in which patients and their families find themselves — on top of the reality of this cruel disease — is completely unacceptable.",
-  "Originally self-funded, the foundation is now working to raise funds for research and raise awareness of the disease in order to improve the situation for patients and their families. The Ströck family and the dedicated WE&ME team are committed to funding groundbreaking research that unravels the complexity of ME/CFS and brings us closer to effective treatments and a cure. Join us on this journey to make a tangible difference in the lives of those affected by ME/CFS. Together, we can make progress and bring about positive change.",
+const EYEBROW = "text-[11px] font-semibold uppercase tracking-[0.08em] text-blue";
+const HEADLINE =
+  "headline text-[34px] md:text-[52px] font-semibold leading-[1] tracking-[-0.01em]";
+const BODY = "text-[17px] leading-[1.5] text-ink/85 max-w-[65ch]";
+const WRAP = "mx-auto w-full max-w-[1200px] px-7 py-16 md:px-12";
+
+const whoFacts = [
+  "Approximately 0.4% to 0.8% of the population: between 32 and 65 million people worldwide, with high uncertainty due to the lack of research.",
+  "All age groups are affected: children, young adults, and older adults.",
+  "Up to three quarters of those affected are women.",
+  "The disease frequently develops following a bacterial or viral infection, such as Epstein-Barr virus infection or COVID-19.",
+  "Other reported triggers include surgery, accidents, and toxic exposures.",
 ];
 
-/* Group labels in render order. Matches the live site. */
-const GROUP_LABELS: Array<{ key: TeamMember["role_type"]; label: string }> = [
-  { key: "board",      label: "Board of Directors" },
-  { key: "team",       label: "Foundation Team" },
-  { key: "scientific", label: "Scientific Advisory Board" },
-  { key: "medical",    label: "Medical Advisory Board" },
-  { key: "patient",    label: "Patient Advisory Board" },
-  { key: "advisory",   label: "Advisory Board" },
+const comorbidities = [
+  {
+    title: "POTS – Postural Orthostatic Tachycardia Syndrome",
+    body: "The circulatory disturbances (orthostatic intolerance) associated with ME/CFS frequently manifest as POTS, a disorder of the autonomic nervous system in which the body has difficulty regulating blood circulation when standing up. When moving from a lying or sitting position to standing, the heart rate increases markedly without a corresponding drop in blood pressure. Typical symptoms include palpitations, dizziness, and light-headedness.",
+  },
+  {
+    title: "MCAS – Mast Cell Activation Syndrome",
+    body: "Mast cells are part of the body's innate immune system and play an important role in the body's defence against disease. In the chronic immunological disorder MCAS, they are activated too easily and too frequently, resulting in the release of pro-inflammatory substances. Because mast cells are found throughout the body's tissues and mucous membranes, symptoms are diverse. They range from skin rashes to gastrointestinal complaints, shortness of breath, and severe headaches.",
+  },
+  {
+    title: "hEDS – Hypermobile Ehlers-Danlos Syndrome",
+    body: "In this hereditary disorder, the connective tissue in the joints, skin, and blood vessels is less stable than usual because of alterations in collagen structure. The characteristic features of hEDS are joint hypermobility and hyperextensible skin. Typical symptoms include chronic pain, often affecting the muscles and joints, and rapid fatigability.",
+  },
+  {
+    title: "SFN – Small Fiber Neuropathy",
+    body: "SFN is a disorder affecting the small, thin nerve fibres responsible for pain, temperature, and autonomic sensation, and can usually be diagnosed by means of a skin biopsy. Typical symptoms include burning or stabbing pain beginning in the hands and feet, hypersensitivity to touch, and impaired sweating and temperature regulation.",
+  },
 ];
 
-/* Real partner logos from the live site. Editors can swap in
- * additional partners through the `partner` CPT in wp-admin. */
-const PARTNERS: Array<{ name: string; logo: string; href: string }> = [
-  { name: "PolyBio Research Foundation",     logo: "/brand/partners/polybio.png",                  href: "https://polybio.org/" },
-  { name: "Open Medicine Foundation",         logo: "/brand/partners/open-medicine-foundation.png", href: "https://www.omf.ngo/" },
-  { name: "OGME Österr. Gesellschaft f. ME/CFS", logo: "/brand/partners/ogmeofs.png",             href: "https://www.mecfs.at/" },
-  { name: "Universität Würzburg",             logo: "/brand/partners/universitaet-wuerzburg.png",   href: "https://www.uni-wuerzburg.de/" },
-  { name: "Dr. Michael Stingl (Praxis)",      logo: "/brand/partners/dr-michael-stingl.png",        href: "https://www.neurologe-stingl.at/" },
-  { name: "NeuroLett",                        logo: "/brand/partners/neurolett.png",                 href: "https://www.neurolett.at/" },
-  { name: "FWF — Austrian Science Fund",      logo: "/brand/partners/fwf.png",                      href: "https://www.fwf.ac.at/" },
-  { name: "WWTF — Vienna Science & Tech Fund", logo: "/brand/partners/wwtf.jpg",                     href: "https://www.wwtf.at/" },
-  { name: "Music ME",                         logo: "/brand/partners/music-me.png",                  href: "https://www.musicme.at/" },
-  { name: "Nordlicht",                        logo: "/brand/partners/nordlicht.jpg",                 href: "https://www.nordlicht.co.at/" },
-  { name: "Logo RZ",                          logo: "/brand/partners/logo-rz.png",                   href: "#" },
-];
+function GraphicPlaceholder({ caption }: { caption: string }) {
+  return (
+    <figure className="mt-8 w-full rounded-2xl border border-dashed border-ink/15 bg-ink/5 px-6 py-14">
+      <figcaption className="text-center">
+        <span className="block text-[11px] uppercase tracking-[0.08em] text-ink/45">
+          Graphic, in preparation
+        </span>
+        <span className="mt-2 block text-[15px] text-ink/50">{caption}</span>
+      </figcaption>
+    </figure>
+  );
+}
 
-export default async function AboutPage() {
-  const [page, team] = await Promise.all([
-    getPageBySlug("about"),
-    getTeam(),
-  ]);
-
-  // Group the team by role_type. Fall back to display_order so the
-  // grid reflects the order the live site uses.
-  const byGroup: Record<string, TeamMember[]> = {};
-  for (const m of team) {
-    const k = m.role_type ?? "team";
-    byGroup[k] = byGroup[k] ?? [];
-    byGroup[k].push(m);
-  }
-  for (const k of Object.keys(byGroup)) {
-    byGroup[k].sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0));
-  }
-
+export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section id="our-history" className="bg-white">
-        <div className="mx-auto max-w-[1200px] px-7 py-14 md:px-12 md:py-20">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
-            Our story
-          </p>
-          <h1 className="headline mt-4 text-[clamp(2.5rem,8vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.02em]">
-            Welcome to the<br />WE&amp;ME Foundation.
-          </h1>
-          <p className="mt-6 max-w-[60ch] text-[18px] leading-[1.5] text-ink/85">
-            The WE&amp;ME Foundation was founded in 2020 by the Ströck family.
-            Two of their three sons, Christoph and Philipp, live with ME/CFS.
-            The family personally covers every operating cost so that{" "}
-            <span className="bg-urgency px-1 font-semibold">100% of donations fund research</span>.
-          </p>
-          <div className="mt-10 overflow-hidden rounded-2xl">
+      <section className="bg-empathy text-ink">
+        <div className={`${WRAP} md:grid md:grid-cols-12 md:gap-16`}>
+          <div className="md:col-span-8">
+            <p className={EYEBROW}>What is ME/CFS?</p>
+            <h1 className="headline mt-3 text-[40px] md:text-[64px] font-semibold leading-[1] tracking-[-0.01em]">
+              Imagine getting the flu, and never getting out of bed.
+            </h1>
+            <p className="mt-6 text-[17px] leading-[1.5] text-ink/85 max-w-[60ch]">
+              Myalgic encephalomyelitis / chronic fatigue syndrome (ME/CFS) is
+              one of the most disabling, and most ignored, chronic diseases of
+              our time. It can happen to anyone.
+            </p>
+          </div>
+          <div className="md:col-span-4 md:flex md:items-end md:justify-end">
             <Image
-              src={ABOUT_HERO_IMAGE}
-              alt="WE&ME Foundation – the Ströck family and the foundation team"
-              width={1352}
-              height={700}
-              priority
-              className="aspect-[1400/700] w-full object-cover"
+              src={ILLU}
+              alt=""
+              aria-hidden
+              width={220}
+              height={200}
+              className="hidden md:block w-[220px] h-auto"
             />
           </div>
         </div>
       </section>
 
-      {/* Story */}
-      <section className="bg-empathy">
-        <div className="mx-auto max-w-[1200px] px-7 py-16 md:px-12 md:grid md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
-              Our history
-            </p>
-            <h2 className="headline mt-3 text-[34px] md:text-[42px] font-semibold leading-[1.05] tracking-[-0.01em]">
-              How a family became a foundation.
-            </h2>
-          </div>
-          <div className="md:col-span-8 mt-5 md:mt-0 space-y-5 text-[17px] leading-[1.6] text-ink/85">
-            {STORY_PARAGRAPHS.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
+      {/* What */}
+      <section id="what" className="bg-white">
+        <div className={WRAP}>
+          <p className={EYEBROW}>What is ME/CFS?</p>
+          <h2 className="headline text-[28px] md:text-[40px] font-semibold leading-[1] tracking-[-0.01em] mt-3">
+            Myalgic Encephalomyelitis / Chronic Fatigue Syndrome
+          </h2>
+          <p className={`${BODY} mt-5`}>
+            ME/CFS is a debilitating chronic disease that greatly reduces
+            people&rsquo;s ability to function. Even minor physical and
+            cognitive exertion can lead to a worsening of their condition and
+            an aggravation of symptoms. This deterioration often occurs only
+            hours or days after the exertion. Recovery may take a very long
+            time and may remain incomplete. This characteristic phenomenon is
+            known as Post-Exertional Malaise (PEM), the hallmark symptom of
+            ME/CFS.
+          </p>
+          <p className={`${BODY} mt-5`}>
+            The most common symptoms include profound exhaustion, a flu-like
+            malaise, unrefreshing sleep, pain, gastrointestinal complaints,
+            and difficulties with thinking, memory, or concentration. During an
+            episode of PEM, symptoms become more severe, and new symptoms
+            often appear as well. Repeated episodes of PEM may lead to a
+            permanent worsening of the disease.
+          </p>
+          <p className={`${BODY} mt-5`}>
+            For many people affected, even everyday sensory stimuli such as
+            noise, light, smells, or touch constitute a burden that
+            exacerbates their symptoms. Prolonged sitting or standing also
+            frequently worsens their condition.
+          </p>
         </div>
       </section>
 
-      {/* Mission */}
-      <section id="our-mission" className="bg-white">
-        <div className="mx-auto max-w-[1200px] px-7 py-16 md:px-12">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
-            Our mission
-          </p>
-          <h2 className="headline mt-3 text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold leading-[1.15] tracking-[-0.01em] max-w-[36ch]">
-            We are committed to ensuring that people with ME/CFS are recognized, taken seriously, and well cared for.
-          </h2>
-          <p className="mt-5 max-w-[60ch] text-[17px] leading-[1.55] text-ink/80">
-            That is why we support education and research with the goal of
-            making effective treatments and a cure possible.
-          </p>
-        </div>
-      </section>
-
-      {/* Vision */}
-      <section id="vision" className="bg-[#f0f6ef]">
-        <div className="mx-auto max-w-[1200px] px-7 py-16 md:px-12">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
-            Vision
-          </p>
-          <h2 className="headline mt-3 text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold leading-[1.15] tracking-[-0.01em] max-w-[36ch]">
-            We envision a future in which every person with ME/CFS is diagnosed early and has access to effective treatments and a cure.
-          </h2>
-        </div>
-      </section>
-
-      {/* Board & advisory boards */}
-      <section id="about-board" className="bg-white">
-        <div className="mx-auto max-w-[1200px] px-7 py-16 md:px-12">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
-            Organization
-          </p>
-          <h2 className="headline mt-3 text-[clamp(2rem,4.5vw,3.2rem)] font-semibold leading-[1.05] tracking-[-0.01em]">
-            United by a single goal.
-          </h2>
-
-          <div className="mt-12 space-y-16">
-            {GROUP_LABELS.map(({ key, label }) => {
-              const group = byGroup[key ?? "team"] ?? [];
-              if (group.length === 0) return null;
-              return (
-                <div key={key}>
-                  <h3 className="text-[12px] font-semibold uppercase tracking-[0.08em] text-blue mb-6">
-                    {label}
-                  </h3>
-                  <PersonGrid people={group} cols={label.includes("Foundation Team") ? 3 : label.includes("Medical") ? 4 : 3} />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Partners */}
-      <section id="our-partners" className="bg-[#f0f6ef]">
-        <div className="mx-auto max-w-[1200px] px-7 py-16 md:px-12">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
-            Our partners
-          </p>
-          <h2 className="headline mt-3 text-[clamp(2rem,4.5vw,3.2rem)] font-semibold leading-[1.05] tracking-[-0.01em] max-w-[24ch]">
-            No one changes the world alone.
-          </h2>
-          <p className="mt-4 max-w-[60ch] text-[17px] leading-[1.5] text-ink/80">
-            We co-fund, co-design and co-steward research with a network
-            of funders, clinicians and patient organisations across Europe
-            and the US.
-          </p>
-          <ul className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {PARTNERS.map((p) => (
-              <li key={p.name} className="bg-white rounded-2xl p-5 flex items-center justify-center min-h-[100px]">
-                {p.href !== "#" ? (
-                  <a href={p.href} target="_blank" rel="noreferrer" className="block">
-                    <Image
-                      src={withBasePath(p.logo)}
-                      alt={p.name}
-                      width={200}
-                      height={80}
-                      unoptimized
-                      className="h-12 w-auto object-contain"
-                    />
-                  </a>
-                ) : (
-                  <Image
-                    src={withBasePath(p.logo)}
-                    alt={p.name}
-                    width={200}
-                    height={80}
-                    unoptimized
-                    className="h-12 w-auto object-contain"
-                  />
-                )}
+      {/* Who */}
+      <section id="who" className="bg-mint text-ink">
+        <div className={WRAP}>
+          <p className={EYEBROW}>Who develops ME/CFS?</p>
+          <h2 className={`${HEADLINE} mt-3`}>Anyone. At any age.</h2>
+          <ul className="mt-8 divide-y divide-ink/20 border-t border-b border-ink/20">
+            {whoFacts.map((fact) => (
+              <li key={fact} className={`${BODY} py-5 md:py-7`}>
+                {fact}
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* Annual reports / transparency — for now just a placeholder
-       * pointing editors at the WordPress side. */}
-      <section id="annual-reports" className="bg-white">
-        <div className="mx-auto max-w-[1200px] px-7 py-16 md:px-12">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
-            Annual reports
+      {/* Severity */}
+      <section id="severity" className="bg-white">
+        <div className={WRAP}>
+          <p className={EYEBROW}>Severity and disease burden</p>
+          <h2 className={`${HEADLINE} mt-3`}>Often invisible. Often devastating.</h2>
+          <p className={`${BODY} mt-5`}>
+            People with ME/CFS often do not appear ill, yet they are often
+            severely impaired. Work, school or university studies, social
+            activities, and everyday tasks are frequently possible only to a
+            limited extent or no longer possible at all.
           </p>
-          <h2 className="headline mt-3 text-[clamp(1.8rem,3.5vw,2.6rem)] font-semibold leading-[1.1] tracking-[-0.01em]">
-            Our work in review.
-          </h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <a
-              href="https://www.weandmecfs.org/wp-content/uploads/2026/02/Jahresbericht_2024_WEME.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between rounded-2xl border border-ink/10 px-6 py-5 transition hover:border-blue hover:bg-blue/5"
-            >
-              <div>
-                <p className="text-[14px] font-semibold text-ink/55 uppercase tracking-[0.08em]">2024</p>
-                <p className="mt-1 text-[18px] font-semibold text-ink">Annual Report 2024</p>
+          <p className={`${BODY} mt-5`}>
+            In severe and very severe cases, those affected are bedridden and
+            dependent on assistance for all activities of daily living. In
+            rare cases, nutrition via a feeding tube may also become
+            necessary. Many are required to remain constantly in a dark, quiet
+            room. They spend most of their time in near-complete isolation,
+            without distraction or stimulation from conversation, reading, or
+            television. Compared with many other diseases, people with
+            severe ME/CFS experience among the lowest levels of quality of
+            life.
+          </p>
+          <figure className="mt-8">
+            <Image
+              src={PORTRAIT_REST}
+              alt="A person resting in a darkened room"
+              width={1600}
+              height={900}
+              className="aspect-[16/9] w-full rounded-2xl object-cover"
+            />
+          </figure>
+          <GraphicPlaceholder caption="Graphic: quality of life in comparison" />
+          <p className={`${BODY} mt-5`}>
+            Because of the severity of the disease, its chronic course, and
+            its relative prevalence, the global disease burden of ME/CFS is
+            high: it is estimated to be twice that of HIV/AIDS, for example.
+            The disease also imposes substantial societal costs through lost
+            productivity, as young people affected may be unable to complete
+            their education and adults may leave the workforce. Family
+            members caring for severely affected individuals may also have to
+            give up employment.
+          </p>
+          <p className={`${BODY} mt-5`}>
+            Despite this, ME/CFS is dramatically underfunded. Studies
+            comparing research funding with disease burden demonstrate this
+            clearly. In the United States, research funding for ME/CFS provided
+            by the National Institutes of Health (NIH) amounts to only about
+            1% of what would be appropriate given the disease burden.
+          </p>
+          <GraphicPlaceholder caption="Graphic: NIH funding for ME/CFS compared with other diseases (CrunchME)" />
+          <p className={`${BODY} mt-5`}>
+            The severity and disease burden of ME/CFS highlight the urgent
+            need for increased attention and support for both specialised
+            treatment centres and ME/CFS research.
+          </p>
+        </div>
+      </section>
+
+      {/* Course, diagnosis & treatment */}
+      <section id="course" className="bg-empathy text-ink">
+        <div className={WRAP}>
+          <p className={EYEBROW}>Course, diagnosis &amp; treatment</p>
+          <h2 className={`${HEADLINE} mt-3`}>No test. No cure. Not yet.</h2>
+          <p className={`${BODY} mt-5`}>
+            ME/CFS may begin suddenly or develop gradually. The nature and
+            severity of symptoms often change over the course of the illness.
+            In the long term, some people experience an improvement in their
+            health status, whereas in others it remains unchanged or
+            continues to deteriorate. While recovery is common in the first
+            few years of illness, complete recovery after this is rare.
+            Recovery seems to be more likely in children and young people.
+            For most people affected beyond three years from onset, ME/CFS is
+            a severely disabling, chronic, long-term illness.
+          </p>
+          <p className={`${BODY} mt-5`}>
+            The causes of ME/CFS are not yet understood. There is no
+            laboratory test that can confirm the disease. Diagnosis is based
+            on the characteristic symptoms, which must substantially impair
+            daily life and persist for several months. In addition, other
+            conditions with similar symptoms must be ruled out.
+          </p>
+          <p className={`${BODY} mt-5`}>
+            At present, there is no cure and no disease-modifying treatment
+            for ME/CFS that has been proven effective. Treatment primarily
+            targets individual symptoms such as sleep disturbances, pain, or
+            orthostatic intolerance. Many people benefit from adapting their
+            activities to their available capacity and avoiding PEM
+            (pacing).
+          </p>
+          <p className={`${BODY} mt-5`}>
+            Therapies involving the gradual increase of physical activity,
+            such as Graded Exercise Therapy (GET), have not been shown to
+            provide benefit. Many people treated with these approaches report
+            a long-term or permanent deterioration in their health.
+            Consequently, several medical guidelines advise against such
+            approaches. According to current knowledge, Cognitive Behavioural
+            Therapy (CBT) also does not improve the disease itself.
+          </p>
+        </div>
+      </section>
+
+      {/* Terminology & comorbidities */}
+      <section id="terminology" className="bg-white">
+        <div className={WRAP}>
+          <p className={EYEBROW}>Terminology &amp; comorbidities</p>
+          <h2 className={`${HEADLINE} mt-3`}>One disease. Many names.</h2>
+          <p className={`${BODY} mt-5`}>
+            During the twentieth century, the disease was referred to by
+            various names, all of which are problematic in different ways.
+            The most commonly used terms are Myalgic Encephalomyelitis (ME)
+            and Chronic Fatigue Syndrome (CFS). The World Health
+            Organization classifies both ME and CFS as neurological diseases
+            under the same ICD-10 code G93.3.
+          </p>
+          <p className={`${BODY} mt-5`}>
+            In recent years, the combined term ME/CFS has become increasingly
+            established in the scientific literature and has been adopted by
+            healthcare providers, professionals, and patient organisations.
+            In keeping with this emerging consensus, the technical term
+            ME/CFS is used here to refer to the disease, without prejudice
+            regarding its pathology.
+          </p>
+          <p className={`${BODY} mt-5`}>
+            Many people with ME/CFS also experience additional medical
+            conditions that can further increase the limitations caused by
+            ME/CFS. Conversely, pre-existing conditions or comorbidities may
+            also worsen as a result of ME/CFS. The precise relationships
+            between these conditions remain insufficiently understood. Their
+            frequent co-occurrence may indicate related and interconnected
+            disease mechanisms.
+          </p>
+          <div className="mt-10 grid grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-12">
+            {comorbidities.map((c) => (
+              <div key={c.title}>
+                <h3 className="headline text-[22px] font-semibold leading-[1.1]">
+                  {c.title}
+                </h3>
+                <p className="mt-3 text-[17px] leading-[1.5] text-ink/85">
+                  {c.body}
+                </p>
               </div>
-              <span className="text-[15px] font-semibold text-blue">Open PDF →</span>
-            </a>
-            <div className="flex items-center justify-between rounded-2xl border border-dashed border-ink/15 px-6 py-5">
-              <div>
-                <p className="text-[14px] font-semibold text-ink/55 uppercase tracking-[0.08em]">2025</p>
-                <p className="mt-1 text-[18px] font-semibold text-ink/55">Annual Report 2025 — in review</p>
-              </div>
-              <span className="text-[14px] text-ink/55">Coming soon</span>
-            </div>
+            ))}
           </div>
         </div>
       </section>
-    </>
-  );
-}
 
-function PersonGrid({ people, cols = 3 }: { people: TeamMember[]; cols?: 3 | 4 }) {
-  return (
-    <ul className={`grid grid-cols-2 sm:grid-cols-3 ${cols === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-x-6 gap-y-10`}>
-      {people.map((p) => {
-        const photo =
-          (p as TeamMember & { portrait?: string }).portrait
-            ? withBasePath((p as TeamMember & { portrait?: string }).portrait!)
-            : p._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
-        return (
-          <li key={p.id} className="flex flex-col">
-            {photo ? (
-              <div className="aspect-square w-full overflow-hidden rounded-2xl bg-ink/5">
-                <Image
-                  src={photo}
-                  alt={`Portrait of ${decodeHtml(p.title.rendered)}`}
-                  width={400}
-                  height={400}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            ) : (
-              <div className="aspect-square w-full rounded-2xl bg-ink/5" />
-            )}
-            <p className="mt-4 text-[17px] font-semibold leading-tight text-ink">
-              {decodeHtml(p.title.rendered)}
-            </p>
-            {p.role && (
-              <p className="mt-1 text-[14px] text-ink/70 leading-snug">
-                {p.role}
-              </p>
-            )}
-          </li>
-        );
-      })}
-    </ul>
+      {/* Closing */}
+      <section className="bg-white">
+        <div className={WRAP}>
+          <p className={EYEBROW}>From the lives of those affected</p>
+          <h2 className={`${HEADLINE} mt-3`}>Real people. Real stakes.</h2>
+          <div className="mt-8 max-w-[420px]">
+            <Image
+              src={STORY_MILA}
+              alt="Portrait from the WE&ME story series"
+              width={1200}
+              height={900}
+              className="aspect-[4/3] w-full rounded-2xl object-cover"
+            />
+          </div>
+          <Link
+            href="/stories"
+            className="mt-6 inline-flex items-center text-[16px] font-semibold text-blue no-underline hover:opacity-80"
+          >
+            All stories →
+          </Link>
+        </div>
+      </section>
+    </>
   );
 }
