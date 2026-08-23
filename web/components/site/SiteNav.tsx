@@ -15,7 +15,7 @@ const groups: Group[] = [
     items: [
       { label: "Our Mission",       href: "/about#mission" },
       { label: "Our Story",         href: "/about#story" },
-      { label: "Our Team & Boards", href: "/about#team" },
+      { label: "Our Team & Boards", href: "/about#about-board" },
       { label: "Partners",          href: "/about#partners" },
       { label: "Transparency",      href: "/about#transparency" },
     ],

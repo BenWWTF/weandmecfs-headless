@@ -92,7 +92,7 @@ final class WeAndMe_Headless_CPT {
 			'supports'      => [ 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' ],
 			'fields'        => [
 				'role'          => [ 'type' => 'string' ],
-				'role_type'     => [ 'type' => 'string', 'enum' => [ 'team', 'advisor', 'jury', 'alumni' ], 'default' => 'team' ],
+				'role_type'     => [ 'type' => 'string', 'enum' => [ 'board', 'team', 'scientific', 'medical', 'patient', 'advisory', 'jury', 'alumni' ], 'default' => 'team' ],
 				'x_handle'      => [ 'type' => 'string' ],
 				'linkedin_url'  => [ 'type' => 'string', 'format' => 'uri' ],
 				'display_order' => [ 'type' => 'integer', 'default' => 0 ],

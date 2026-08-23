@@ -115,10 +115,13 @@ const TeamMemberSchema = z.object({
   title: z.object({ rendered: z.string() }),
   content: z.object({ rendered: z.string() }).optional(),
   role: z.string().nullable().optional(),
-  role_type: z.enum(["team", "advisor", "jury", "alumni"]).nullable().optional(),
+  role_type: z.enum(["board", "team", "scientific", "medical", "patient", "advisory", "jury", "alumni"]).nullable().optional(),
   x_handle: z.string().nullable().optional(),
   linkedin_url: z.string().nullable().optional(),
   display_order: z.number().nullable().optional(),
+  // Demo-data only: local path to a portrait under /public/.
+  // The live site serves portraits via `_embedded["wp:featuredmedia"]`.
+  portrait: z.string().optional(),
   _embedded: z.object({
     "wp:featuredmedia": z.array(MediaSchema).optional(),
   }).optional(),

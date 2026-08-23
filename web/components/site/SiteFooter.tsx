@@ -5,7 +5,7 @@ type Item = { label: string; href: string };
 
 const foundation: Item[] = [
   { label: "About",            href: "/about" },
-  { label: "Team & boards",    href: "/about#team" },
+  { label: "Team & boards",    href: "/about#about-board" },
   { label: "Funded research",  href: "/research" },
   { label: "Annual reports",   href: "#" },
   { label: "Press",            href: "#" },
