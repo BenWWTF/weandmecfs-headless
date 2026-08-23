@@ -22,10 +22,21 @@ export async function Researcher() {
   const role     = featured?.role ?? "Professor of Molecular Biology and Genetics, Cornell University";
   const bio      = featured?.content?.rendered
     ? decodeHtml(stripTags(featured.content.rendered))
-    : "ME/CFS has never lacked patients or questions, only funding. WE&ME is taking that seriously, with real rigour.";
+    : "ME/CFS research has been starved of funding for decades. WE&ME is helping to close that gap by putting serious resources behind the work, and that changes what is possible in this field.";
+
+  // Portrait resolution order:
+  //   1. Featured media from the WP REST `_embedded` payload
+  //   2. `portrait` field on the demo data (local /public/people/...)
+  //   3. Local Maureen Hanson portrait as last-resort fallback
+  //      (was previously the Akiko Iwasaki mockup photo, which
+  //      mismatched the name)
   const x_handle = featured?.x_handle ?? null;
+  const featuredPortrait = (featured as (typeof featured) & { portrait?: string } | null)?.portrait
+    ? withBasePath((featured as { portrait: string }).portrait)
+    : null;
   const photo    = featured?._embedded?.["wp:featuredmedia"]?.[0]?.source_url
-    ?? withBasePath("/images/researcher-portrait.jpg");
+    ?? featuredPortrait
+    ?? withBasePath("/people/maureen-hanson.jpg");
 
   return (
     <section className="bg-[#f0f6ef]">

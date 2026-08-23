@@ -7,17 +7,31 @@ import { useEffect, useState } from "react";
  * scrolled past one viewport. Replaces the behaviour the user used
  * to get from the dropdown nav (no real native browser back-to-top
  * on long pages).
+ *
+ * The scroll handler is rAF-throttled and only calls setState when
+ * the visibility actually flips, so it never causes a re-render on
+ * the frames where nothing changes (which is most of them).
  */
 export function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setVisible(window.scrollY > window.innerHeight);
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const shouldShow = window.scrollY > window.innerHeight;
+      setVisible((prev) => (prev === shouldShow ? prev : shouldShow));
     };
-    onScroll();
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (

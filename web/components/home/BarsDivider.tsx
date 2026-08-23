@@ -26,12 +26,22 @@ export function BarsDivider() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [progress, setProgress] = useState(0);
   const [reduced, setReduced] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);
     const onChange = () => setReduced(mq.matches);
     mq.addEventListener("change", onChange);
+
+    // On screens narrower than the `md` breakpoint the walker is a
+    // decorative element only — the per-scroll getBoundingClientRect
+    // + state update was making mobile scroll feel jumpy. We just
+    // freeze it at 50% on mobile.
+    const mqMobile = window.matchMedia("(max-width: 767px)");
+    const onMobile = () => setIsMobile(mqMobile.matches);
+    onMobile();
+    mqMobile.addEventListener("change", onMobile);
 
     let frame = 0;
     const update = () => {
@@ -44,6 +54,9 @@ export function BarsDivider() {
       setProgress(Math.min(1, Math.max(0, p)));
     };
     const onScroll = () => {
+      // Skip the per-frame measure on mobile — the walker is frozen
+      // there, so we don't need to keep recomputing its position.
+      if (isMobile) return;
       if (!frame) frame = requestAnimationFrame(update);
     };
     update();
@@ -51,13 +64,15 @@ export function BarsDivider() {
     window.addEventListener("resize", onScroll);
     return () => {
       mq.removeEventListener("change", onChange);
+      mqMobile.removeEventListener("change", onMobile);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [isMobile]);
 
-  const walk = reduced ? 0.333 : progress;
+  // On mobile, park the walker at 50% so it's visible but static.
+  const walk = reduced || isMobile ? 0.5 : progress;
 
   return (
     <section ref={sectionRef} className="bg-empathy text-ink">
@@ -89,7 +104,7 @@ export function BarsDivider() {
               aria-hidden
               muted
               playsInline
-              preload="metadata"
+              preload="none"
               className="invisible block h-auto w-[312px] md:w-[429px]"
             />
             <div className="absolute inset-x-0 bottom-0 h-px bg-ink/20" />
@@ -103,11 +118,11 @@ export function BarsDivider() {
               <video
                 src={BARS_VIDEO}
                 aria-hidden
-                autoPlay
-                loop
+                autoPlay={!isMobile && !reduced}
+                loop={!isMobile && !reduced}
                 muted
                 playsInline
-                preload="metadata"
+                preload={isMobile ? "none" : "metadata"}
                 className="block h-auto w-full"
               />
             </div>

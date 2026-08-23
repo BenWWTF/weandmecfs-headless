@@ -438,6 +438,23 @@ function EndDot({
 
 export function WhyFund({ projects }: { projects: Project[] }) {
   const reduced = usePrefersReducedMotion();
+
+  // The mobile spine animation (drawSVG + per-frame getBoundingClientRect
+  // + setActiveMobile on every scroll tick) is too expensive for small
+  // viewports — it causes jumpy scrolling on phones. We disable it on
+  // screens narrower than the `lg` breakpoint (1024px) and just show
+  // the steps fully revealed. The desktop layout (the side-rail with
+  // the big animated spine) is unaffected.
+  const [isMobileViewport, setIsMobileViewport] = useState(true);
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 1023px)");
+    const on = () => setIsMobileViewport(mql.matches);
+    on();
+    mql.addEventListener("change", on);
+    return () => mql.removeEventListener("change", on);
+  }, []);
+  const skipMobileAnim = reduced || isMobileViewport;
+
   const [amount, setAmount] = useState(50);
 
   const root = useRef<HTMLElement | null>(null);
@@ -445,9 +462,9 @@ export function WhyFund({ projects }: { projects: Project[] }) {
   const mobileWrap = useRef<HTMLDivElement | null>(null);
   const mobileColumn = useRef<HTMLDivElement | null>(null);
   const [spine, setSpine] = useState({ top: 9, height: 0 });
-  const [activeMobile, setActiveMobile] = useState(reduced ? 4 : -1);
+  const [activeMobile, setActiveMobile] = useState(skipMobileAnim ? 4 : -1);
   const [active, setActive] = useState(0);
-  const [endReached, setEndReached] = useState(false);
+  const [endReached, setEndReached] = useState(skipMobileAnim);
   const rippleFired = useRef(false);
 
   // The "mobilised" figure is a brand statement — the cumulative
@@ -461,6 +478,24 @@ export function WhyFund({ projects }: { projects: Project[] }) {
   const totalM = TOTAL_MOBILISED;
 
   useEffect(() => {
+    // On mobile (or when reduced motion is preferred) we don't run
+    // the spine animation — the SVG path stays invisible and the
+    // dots are statically highlighted. So no per-frame measurement,
+    // no per-scroll `ScrollTrigger.refresh()`, no jumpy scroll.
+    if (skipMobileAnim) {
+      // Run a single lightweight measure so the column has a
+      // sensible minimum height for the end-dot marker.
+      const raf = requestAnimationFrame(() => {
+        const col = mobileColumn.current;
+        if (col) {
+          setSpine((prev) =>
+            prev.height > 0 ? prev : { top: 9, height: col.scrollHeight - 18 },
+          );
+        }
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+
     const measure = () => {
       const wrap = mobileWrap.current;
       const col = mobileColumn.current;
@@ -515,12 +550,12 @@ export function WhyFund({ projects }: { projects: Project[] }) {
       window.removeEventListener("whyfund:remeasure", measure);
       window.removeEventListener("resize", measure);
     };
-  }, []);
+  }, [skipMobileAnim]);
 
   const peakRef = useRef(0);
   useGSAP(
     () => {
-      if (reduced) {
+      if (skipMobileAnim) {
         if (mobileSpine.current) gsap.set(mobileSpine.current, { drawSVG: "100%" });
         setActiveMobile(4);
         setEndReached(true);
@@ -583,7 +618,7 @@ export function WhyFund({ projects }: { projects: Project[] }) {
         );
       });
     },
-    { scope: root, dependencies: [reduced] },
+    { scope: root, dependencies: [reduced, skipMobileAnim] },
   );
 
   const blockRefs = useRef<(HTMLDivElement | null)[]>([]);
