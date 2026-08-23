@@ -30,10 +30,10 @@ export default async function BlogIndex() {
   }));
 
   return (
-    <section className="bg-white">
+    <section id="notes" className="bg-white">
       <div className="mx-auto max-w-[1200px] px-7 py-16 md:px-12">
         <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
-          News &amp; Events
+          Notes on ME/CFS
         </p>
         <h1 className="headline mt-3 text-[clamp(2.5rem,8vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.02em]">
           Writing, news &amp; events.

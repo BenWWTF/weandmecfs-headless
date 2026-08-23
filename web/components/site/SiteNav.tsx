@@ -83,6 +83,24 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [showFund, setShowFund] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+
+  // Derive the current language from the URL path. The demo build
+  // serves English; the live weandmecfs.org serves German under
+  // /de/… via WPML. The DE link below takes the user to the
+  // equivalent German page on the live site, preserving the path
+  // when it makes sense.
+  const [currentLang, setCurrentLang] = useState<"EN" | "DE">("EN");
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const path = window.location.pathname;
+    setCurrentLang(path.startsWith("/de") ? "DE" : "EN");
+  }, []);
+
+  const deUrl =
+    typeof window !== "undefined"
+      ? `https://www.weandmecfs.org/de${window.location.pathname.replace(/^\/weandmecfs-headless/, "")}`
+      : "https://www.weandmecfs.org/de/";
 
   // Show "Fund the Research" once the hero donate button scrolls past.
   useEffect(() => {
@@ -149,14 +167,50 @@ export function SiteNav() {
             {showFund && !open ? "Fund the Research" : "Donate"}
           </Link>
 
-          <button
-            type="button"
-            aria-label="Switch language"
-            title="Auf Deutsch"
-            className="hidden lg:inline-flex items-center px-2.5 py-1.5 text-[11px] font-bold tracking-wide text-ink/80 border border-ink/20 rounded-full hover:bg-ink hover:text-white transition"
-          >
-            DE
-          </button>
+          <div className="relative hidden lg:block">
+            <button
+              type="button"
+              onClick={() => setLangOpen((o) => !o)}
+              aria-label="Switch language"
+              aria-expanded={langOpen}
+              title={currentLang === "EN" ? "Auf Deutsch" : "In English"}
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 text-[11px] font-bold tracking-wide text-ink/80 border border-ink/20 rounded-full hover:bg-ink hover:text-white transition"
+            >
+              {currentLang} <span aria-hidden>⌄</span>
+            </button>
+            {langOpen && (
+              <div
+                role="menu"
+                className="absolute right-0 top-full mt-2 min-w-[160px] rounded-2xl border border-ink/10 bg-white p-2 shadow-xl z-50"
+              >
+                <div className="px-3 py-2 text-[11px] uppercase tracking-[0.08em] text-ink/55">
+                  Language
+                </div>
+                <button
+                  type="button"
+                  role="menuitem"
+                  onClick={() => setLangOpen(false)}
+                  className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-[14px] font-medium text-ink/80 hover:bg-mint"
+                >
+                  <span>EN — English</span>
+                  {currentLang === "EN" && <span aria-hidden>✓</span>}
+                </button>
+                <a
+                  role="menuitem"
+                  href={deUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-[14px] font-medium text-ink/80 hover:bg-mint"
+                >
+                  <span>DE — Deutsch</span>
+                  {currentLang === "DE" && <span aria-hidden>✓</span>}
+                </a>
+                <p className="px-3 py-2 text-[11px] leading-snug text-ink/50">
+                  German content is served by the live site via WPML.
+                </p>
+              </div>
+            )}
+          </div>
 
           <button
             className="lg:hidden text-sm font-medium p-2"
