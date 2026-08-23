@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { SiteNav } from "@/components/site/SiteNav";
-import { SiteFooter } from "@/components/site/SiteFooter";
 
 export const metadata = {
   title: "Shop — WE&ME Foundation",
@@ -11,7 +9,6 @@ export const metadata = {
 export default function ShopPage() {
   return (
     <div className="min-h-screen bg-white text-ink">
-      <SiteNav />
       <main className="mx-auto w-full max-w-[1200px] px-7 py-16 md:px-12 md:py-24">
         <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
           Shop
@@ -31,7 +28,6 @@ export default function ShopPage() {
           Get the newsletter
         </Link>
       </main>
-      <SiteFooter />
     </div>
   );
 }

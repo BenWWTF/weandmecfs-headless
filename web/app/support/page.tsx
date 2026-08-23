@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { SiteNav } from "@/components/site/SiteNav";
-import { SiteFooter } from "@/components/site/SiteFooter";
 
 const DONATE_BASE = "https://donate.weandmecfs.org/de-at/";
 
@@ -41,7 +39,6 @@ export default function SupportPage() {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <SiteNav />
       <main>
         {/* Hero */}
         <section className="mx-auto max-w-[1400px] px-5 pt-10 pb-10 md:px-10 md:pt-16">
@@ -195,7 +192,6 @@ export default function SupportPage() {
           </aside>
         </section>
       </main>
-      <SiteFooter />
     </div>
   );
 }
