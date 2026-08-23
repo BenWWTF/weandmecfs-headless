@@ -6,3 +6,6 @@ out/
 .DS_Store
 *.tsbuildinfo
 next-env.d.ts
+# But keep the .nojekyll marker that GitHub Pages needs (Jekyll
+# otherwise filters out the _next/ folder)
+!out/.nojekyll
