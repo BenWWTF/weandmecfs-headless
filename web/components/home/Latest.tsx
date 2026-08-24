@@ -46,7 +46,7 @@ export async function Latest() {
           {/* Featured */}
           <li className="featured-breathe">
             <Link
-              href={`/news/${featured.slug}`}
+              href={`/blog/${featured.slug}`}
               className="group grid grid-cols-[auto_88px_minmax(0,1fr)] md:grid-cols-[auto_160px_minmax(0,1fr)_auto] items-center gap-4 md:gap-8 py-5 md:py-7 px-3"
             >
               <span className="headline text-2xl md:text-4xl text-blue tabular-nums w-8 md:w-12">
@@ -83,7 +83,7 @@ export async function Latest() {
           {rest.map((n, i) => (
             <li key={n.slug}>
               <Link
-                href={`/news/${n.slug}`}
+                href={`/blog/${n.slug}`}
                 className="group grid grid-cols-[auto_88px_minmax(0,1fr)] md:grid-cols-[auto_160px_minmax(0,1fr)_auto] items-center gap-4 md:gap-8 py-5 md:py-7"
               >
                 <span className="headline text-2xl md:text-4xl text-blue tabular-nums w-8 md:w-12">

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { withBasePath } from "@/lib/basePath";
+import { Reveal } from "@/components/site/Reveal";
 
 export const revalidate = 300;
 
@@ -66,8 +67,8 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-empathy text-ink">
-        <div className={`${WRAP} md:grid md:grid-cols-12 md:gap-16`}>
+      <section className="w-full bg-empathy text-ink">
+        <Reveal className={`${WRAP} md:grid md:grid-cols-12 md:gap-16`}>
           <div className="md:col-span-8">
             <p className={EYEBROW}>What is ME/CFS?</p>
             <h1 className="headline mt-3 text-[40px] md:text-[64px] leading-[1] tracking-[-0.01em]">
@@ -89,12 +90,12 @@ export default function AboutPage() {
               className="hidden md:block w-[220px] h-auto"
             />
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* What */}
-      <section id="what" className="bg-white">
-        <div className={WRAP}>
+      <section id="what" className="scroll-mt-24 bg-white">
+        <Reveal className={WRAP}>
           <p className={EYEBROW}>What is ME/CFS?</p>
           <h2 className="headline text-[28px] md:text-[40px] font-semibold leading-[1] tracking-[-0.01em] mt-3">
             Myalgic Encephalomyelitis / Chronic Fatigue Syndrome
@@ -123,12 +124,12 @@ export default function AboutPage() {
             exacerbates their symptoms. Prolonged sitting or standing also
             frequently worsens their condition.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Who */}
-      <section id="who" className="bg-mint text-ink">
-        <div className={WRAP}>
+      <section id="who" className="scroll-mt-24 bg-mint text-ink">
+        <Reveal className={WRAP}>
           <p className={EYEBROW}>Who develops ME/CFS?</p>
           <h2 className={`${HEADLINE} mt-3`}>Anyone. At any age.</h2>
           <ul className="mt-8 divide-y divide-ink/20 border-t border-b border-ink/20">
@@ -138,12 +139,12 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       </section>
 
       {/* Severity */}
-      <section id="severity" className="bg-white">
-        <div className={WRAP}>
+      <section id="severity" className="scroll-mt-24 bg-white">
+        <Reveal className={WRAP}>
           <p className={EYEBROW}>Severity and disease burden</p>
           <h2 className={`${HEADLINE} mt-3`}>Often invisible. Often devastating.</h2>
           <p className={`${BODY} mt-5`}>
@@ -196,12 +197,12 @@ export default function AboutPage() {
             need for increased attention and support for both specialised
             treatment centres and ME/CFS research.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Course, diagnosis & treatment */}
-      <section id="course" className="bg-empathy text-ink">
-        <div className={WRAP}>
+      <section id="course" className="scroll-mt-24 bg-empathy text-ink">
+        <Reveal className={WRAP}>
           <p className={EYEBROW}>Course, diagnosis &amp; treatment</p>
           <h2 className={`${HEADLINE} mt-3`}>No test. No cure. Not yet.</h2>
           <p className={`${BODY} mt-5`}>
@@ -239,12 +240,12 @@ export default function AboutPage() {
             approaches. According to current knowledge, Cognitive Behavioural
             Therapy (CBT) also does not improve the disease itself.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Terminology & comorbidities */}
-      <section id="terminology" className="bg-white">
-        <div className={WRAP}>
+      <section id="terminology" className="scroll-mt-24 bg-white">
+        <Reveal className={WRAP}>
           <p className={EYEBROW}>Terminology &amp; comorbidities</p>
           <h2 className={`${HEADLINE} mt-3`}>One disease. Many names.</h2>
           <p className={`${BODY} mt-5`}>
@@ -284,12 +285,12 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Closing */}
-      <section className="bg-white">
-        <div className={WRAP}>
+      <section className="scroll-mt-24 bg-white">
+        <Reveal className={WRAP}>
           <p className={EYEBROW}>From the lives of those affected</p>
           <h2 className={`${HEADLINE} mt-3`}>Real people. Real stakes.</h2>
           <div className="mt-8 max-w-[420px]">
@@ -307,7 +308,7 @@ export default function AboutPage() {
           >
             All stories →
           </Link>
-        </div>
+        </Reveal>
       </section>
     </>
   );

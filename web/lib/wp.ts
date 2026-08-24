@@ -145,6 +145,7 @@ const PostSchema = z.object({
   slug: z.string(),
   title: z.object({ rendered: z.string() }),
   excerpt: z.object({ rendered: z.string() }),
+  content: z.object({ rendered: z.string() }),
   date: z.string(),
   _embedded: z.object({
     "wp:featuredmedia": z.array(MediaSchema).optional(),
@@ -269,4 +270,16 @@ export async function getLatestPosts(count = 5): Promise<WPPost[]> {
     z.array(PostSchema),
     { revalidate: 120, tags: ["post", "homepage"], fallback: DEMO_POSTS },
   );
+}
+
+export async function getPostBySlug(slug: string): Promise<WPPost | null> {
+  if (USE_DEMO_DATA) {
+    return DEMO_POSTS.find((p) => p.slug === slug) ?? null;
+  }
+  const posts = await wpFetch(
+    `/posts?slug=${encodeURIComponent(slug)}&_embed=1`,
+    z.array(PostSchema),
+    { revalidate: 120, tags: ["post", `post:${slug}`], fallback: [] },
+  );
+  return posts[0] ?? null;
 }

@@ -3,6 +3,8 @@ import { decodeHtml } from "@/lib/decode";
 import { withBasePath } from "@/lib/basePath";
 import Image from "next/image";
 import type { TeamMember } from "@/lib/wp";
+import { Reveal } from "@/components/site/Reveal";
+import { PageCTA } from "@/components/site/PageCTA";
 
 export const revalidate = 300;
 
@@ -66,8 +68,8 @@ export default async function FoundationPage() {
   return (
     <>
       {/* Hero */}
-      <section id="mission" className="bg-white">
-        <div className={WRAP}>
+      <section className="bg-white">
+        <Reveal className={WRAP}>
           <p className={EYEBROW}>About WE&amp;ME</p>
           <h1 className={`${HEADLINE} mt-3`}>
             Patient-driven.
@@ -76,12 +78,12 @@ export default async function FoundationPage() {
             <br />
             Focused on impact.
           </h1>
-        </div>
+        </Reveal>
       </section>
 
       {/* Mission */}
-      <section className="bg-empathy text-ink">
-        <div className={WRAP}>
+      <section id="mission" className="scroll-mt-24 bg-empathy text-ink">
+        <Reveal className={WRAP}>
           <p className={EYEBROW}>Our mission</p>
           <h2 className={`${HEADLINE} mt-3`}>Ending decades of neglect.</h2>
           <p className={`${BODY} mt-5`}>
@@ -118,12 +120,12 @@ export default async function FoundationPage() {
             height={200}
             className="mt-10 hidden md:block w-[180px] h-auto"
           />
-        </div>
+        </Reveal>
       </section>
 
       {/* Story */}
-      <section id="story" className="bg-white">
-        <div className={WRAP}>
+      <section id="story" className="scroll-mt-24 bg-white">
+        <Reveal className={WRAP}>
           <p className={EYEBROW}>Our story</p>
           <h2 className={`${HEADLINE} mt-3`}>Founded in Vienna, 2020.</h2>
           <p className={`${BODY} mt-5`}>
@@ -148,12 +150,12 @@ export default async function FoundationPage() {
             profound impact on the family and continue to shape WE&amp;ME&rsquo;s
             work today.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Team & Advisory Boards */}
-      <section id="team" className="bg-white">
-        <div className={`${WRAP} py-10`}>
+      <section id="team" className="scroll-mt-24 bg-white">
+        <Reveal className={`${WRAP} py-10`}>
           <p className={EYEBROW}>Our team &amp; advisory boards</p>
           <h2 className={`${HEADLINE} mt-3`}>The people behind WE&amp;ME.</h2>
 
@@ -171,12 +173,12 @@ export default async function FoundationPage() {
               );
             })}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Partners */}
-      <section id="partners" className="bg-[#f0f6ef]">
-        <div className={WRAP}>
+      <section id="partners" className="scroll-mt-24 bg-[#f0f6ef]">
+        <Reveal className={WRAP}>
           <p className={EYEBROW}>Partners</p>
           <h2 className={`${HEADLINE} mt-3`}>Who we work with.</h2>
           <p className="mt-4 max-w-[60ch] text-[17px] leading-[1.5] text-ink/80">
@@ -211,12 +213,12 @@ export default async function FoundationPage() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       </section>
 
       {/* Transparency */}
-      <section id="transparency" className="bg-mint text-ink">
-        <div className={WRAP}>
+      <section id="transparency" className="scroll-mt-24 bg-mint text-ink">
+        <Reveal className={WRAP}>
           <p className={EYEBROW}>Transparency</p>
           <h2 className={`${HEADLINE} mt-3`}>Reports.</h2>
           <p className={`${BODY} mt-5`}>
@@ -241,8 +243,10 @@ export default async function FoundationPage() {
               Financial Report →
             </a>
           </div>
-        </div>
+        </Reveal>
       </section>
+
+      <PageCTA />
     </>
   );
 }
