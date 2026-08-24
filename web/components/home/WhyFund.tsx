@@ -26,16 +26,23 @@ const NODE_DETAIL = "mt-2 text-[16px] leading-[1.5] text-[#0a0a0a]/80 max-w-[46c
 const NODE_LINK = "mt-4 inline-flex text-[16px] text-blue font-semibold no-underline";
 const RULE = "border-[#0a0a0a]/12";
 
-const AMOUNTS = [25, 50, 100];
-const donateUrl = (amount: number) =>
-  `https://donate.weandmecfs.org/en-us/?rnw-amount=${amount}`;
+const ONE_TIME_AMOUNTS = [25, 50, 100, 250];
+const MONTHLY_AMOUNTS = [10, 20, 50];
+
+/* NOTE: confirm the `rnw-amount`, `rnw-payment_type` and
+   `rnw-recurring_interval` query parameters with the donation platform
+   (RaiseNow) before launch — the preselect keys may differ. */
+const donateUrl = (amount: number, monthly: boolean) =>
+  monthly
+    ? `https://donate.weandmecfs.org/en-us/?rnw-payment_type=recurring&rnw-recurring_interval=monthly&rnw-amount=${amount}`
+    : `https://donate.weandmecfs.org/en-us/?rnw-amount=${amount}`;
 
 const NODES = [
-  { id: "donation", label: "Your donation" },
   { id: "goes",     label: "Where it goes" },
   { id: "decides",  label: "Who decides" },
   { id: "went",     label: "Impact so far" },
   { id: "tax",      label: "Your tax return" },
+  { id: "donation", label: "Your donation" },
 ] as const;
 
 function usePrefersReducedMotion() {
@@ -180,6 +187,10 @@ function NodeContent({
   id,
   amount,
   setAmount,
+  custom,
+  setCustom,
+  frequency,
+  switchFrequency,
   reduced,
   projects,
   totalM,
@@ -187,45 +198,113 @@ function NodeContent({
   id: string;
   amount: number;
   setAmount: (n: number) => void;
+  custom: string;
+  setCustom: (s: string) => void;
+  frequency: "one-time" | "monthly";
+  switchFrequency: (f: "one-time" | "monthly") => void;
   reduced: boolean;
   projects: Project[];
   totalM: number;
 }) {
   if (id === "donation") {
+    const customNum = custom.match(/^[1-9]\d*$/) ? Number(custom) : null;
+    const finalAmount = customNum ?? amount;
+    const amounts = frequency === "monthly" ? MONTHLY_AMOUNTS : ONE_TIME_AMOUNTS;
+    const isMonthly = frequency === "monthly";
     return (
       <>
         <p className={NODE_STATEMENT}>Starts here.</p>
+
+        {/* frequency toggle */}
+        <div
+          role="radiogroup"
+          aria-label="Donation frequency"
+          className="mt-5 inline-flex w-fit items-center gap-0 rounded-[10px] border border-[#0a0a0a] p-[3px]"
+        >
+          {(["one-time", "monthly"] as const).map((f) => (
+            <button
+              key={f}
+              type="button"
+              role="radio"
+              aria-checked={frequency === f}
+              onClick={() => switchFrequency(f)}
+              className={`h-[36px] w-[92px] rounded-[7px] px-4 text-[15px] font-bold tabular-nums transition-colors ${
+                frequency === f
+                  ? "bg-ink text-white"
+                  : "bg-transparent text-ink"
+              }`}
+            >
+              {f === "one-time" ? "One-time" : "Monthly"}
+            </button>
+          ))}
+        </div>
+
+        {isMonthly && (
+          <p className="mt-2 text-[14px] text-[#0a0a0a]/55">
+            Monthly givers join Guardians4ME.
+          </p>
+        )}
+
+        {/* amount grid */}
         <div
           role="group"
           aria-label="Donation amount"
-          className="mt-4 inline-flex h-[44px] gap-2"
+          className="mt-4 grid grid-cols-3 gap-2 md:grid-flow-col md:auto-cols-fr md:max-w-[560px]"
         >
-          {AMOUNTS.map((a) => (
+          {amounts.map((a) => (
             <button
               key={a}
               type="button"
-              onClick={() => setAmount(a)}
-              aria-pressed={amount === a}
-              className={`h-full rounded-[8px] px-5 text-[16px] tabular-nums transition-colors ${
-                amount === a
-                  ? "bg-blue font-semibold text-white"
+              onClick={() => {
+                setCustom("");
+                setAmount(a);
+              }}
+              aria-pressed={customNum === null && amount === a}
+              className={`h-[44px] w-full rounded-[8px] text-center text-[16px] tabular-nums transition-colors ${
+                customNum === null && amount === a
+                  ? "bg-urgency font-bold text-ink"
                   : "border border-[#0a0a0a] bg-white text-[#0a0a0a]"
               }`}
             >
               €{a}
             </button>
           ))}
+          <div className="relative h-[44px] w-full">
+            {custom && (
+              <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[16px] tabular-nums text-[#0a0a0a]">
+                €
+              </span>
+            )}
+            <input
+              type="text"
+              inputMode="numeric"
+              aria-label="Custom donation amount"
+              value={custom}
+              onChange={(e) => setCustom(e.target.value)}
+              placeholder="Other"
+              className="h-[44px] w-full rounded-[8px] border border-[#0a0a0a] bg-white px-4 text-center text-[16px] tabular-nums outline-none placeholder:text-[#0a0a0a]/50 focus:border-blue"
+              style={custom ? { paddingLeft: "1.75rem", paddingRight: "0.25rem" } : undefined}
+            />
+          </div>
         </div>
-        <div>
+
+        {/* single primary button */}
+        <div className="mt-5">
           <a
-            href={donateUrl(amount)}
+            href={donateUrl(finalAmount, isMonthly)}
             target="_blank"
             rel="noreferrer"
-            className="mt-4 inline-flex h-[52px] items-center justify-center rounded-full bg-blue px-7 text-[17px] font-bold tabular-nums text-white no-underline transition hover:opacity-90"
+            className="inline-flex h-[52px] items-center justify-center rounded-full bg-urgency px-7 text-[17px] font-bold tabular-nums text-ink no-underline transition hover:brightness-95 focus-visible:ring-2 focus-visible:ring-ink"
           >
-            Give €{amount}
+            Give €{finalAmount}
+            {isMonthly ? " monthly" : ""}
           </a>
         </div>
+
+        {/* caption */}
+        <p className="mt-4 max-w-[46ch] text-[13px] leading-[1.5] text-[#0a0a0a]/55">
+          The Ströck family covers all running costs of WE&amp;ME.
+        </p>
       </>
     );
   }
@@ -317,14 +396,14 @@ function NodeContent({
     return (
       <>
         <p className={NODE_STATEMENT}>
-          <CountUpFourM reduced={reduced} total={totalM} /> mobilised.
+          Nearly <CountUpFourM reduced={reduced} total={totalM} /> mobilised.
           <br />
           All of it biomedical.
         </p>
-        <p className={NODE_DETAIL}>A selection of three funded calls and awards.</p>
+        <p className={NODE_DETAIL}>A selection of four funded calls and awards.</p>
         <Details>
           <ul className={`divide-y border-t border-b ${RULE} divide-[#0a0a0a]/12`}>
-            {projects.slice(0, 3).map((p) => (
+            {projects.slice(0, 4).map((p) => (
               <li key={p.id} className="flex items-start justify-between gap-6 py-4">
                 <div className="min-w-0">
                   <a
@@ -350,7 +429,7 @@ function NodeContent({
             ))}
           </ul>
         </Details>
-        <Link href="/research" className={NODE_LINK}>
+        <Link href="/research#strategy" className={NODE_LINK}>
           Our research strategy →
         </Link>
       </>
@@ -369,7 +448,9 @@ function NodeContent({
         donors outside these regions are welcome to get in touch.
       </p>
       <a
-        href="mailto:contact@weandmecfs.org"
+        href="https://www.weandmecfs.org/contact/"
+        target="_blank"
+        rel="noreferrer"
         className={NODE_LINK}
       >
         Contact us →
@@ -456,6 +537,14 @@ export function WhyFund({ projects }: { projects: Project[] }) {
   const skipMobileAnim = reduced || isMobileViewport;
 
   const [amount, setAmount] = useState(50);
+  const [custom, setCustom] = useState("");
+  const [frequency, setFrequency] = useState<"one-time" | "monthly">("one-time");
+
+  const switchFrequency = (f: "one-time" | "monthly") => {
+    setFrequency(f);
+    setCustom("");
+    setAmount(f === "monthly" ? 20 : 50);
+  };
 
   const root = useRef<HTMLElement | null>(null);
   const mobileSpine = useRef<SVGPathElement | null>(null);
@@ -469,12 +558,11 @@ export function WhyFund({ projects }: { projects: Project[] }) {
 
   // The "mobilised" figure is a brand statement — the cumulative
   // amount WE&ME has committed to ME/CFS research — not the sum of
-  // the current project list. Hardcoded at €4M (matches the live
-  // weandmecfs.org figure and the CountUpFourM component name).
-  // The project list itself is sourced from the `project` CPT in
-  // WordPress so editors can update the actual awards without
-  // touching this number.
-  const TOTAL_MOBILISED = 4_000_000;
+  // the current project list. Hardcoded at €5M (matches the current
+  // mockup figure). The project list itself is sourced from the
+  // `project` CPT in WordPress so editors can update the actual
+  // awards without touching this number.
+  const TOTAL_MOBILISED = 5_000_000;
   const totalM = TOTAL_MOBILISED;
 
   useEffect(() => {
@@ -699,6 +787,10 @@ export function WhyFund({ projects }: { projects: Project[] }) {
                     id={id}
                     amount={amount}
                     setAmount={setAmount}
+                    custom={custom}
+                    setCustom={setCustom}
+                    frequency={frequency}
+                    switchFrequency={switchFrequency}
                     reduced={reduced}
                     projects={projects}
                     totalM={totalM}
@@ -716,7 +808,7 @@ export function WhyFund({ projects }: { projects: Project[] }) {
               <div className="relative pl-[26px]">
                 <span
                   aria-hidden
-                  className="absolute left-0 top-[8px] h-[calc(100%-16px)] w-px bg-[#D9DDDB]"
+                  className="absolute left-0 top-[9px] h-[calc(100%-18px)] w-px bg-[#D9DDDB]"
                 />
                 <ul className="flex flex-col gap-8">
                   {NODES.map(({ label }, i) => (
@@ -754,6 +846,10 @@ export function WhyFund({ projects }: { projects: Project[] }) {
                       id={id}
                       amount={amount}
                       setAmount={setAmount}
+                      custom={custom}
+                      setCustom={setCustom}
+                      frequency={frequency}
+                      switchFrequency={switchFrequency}
                       reduced={reduced}
                       projects={projects}
                       totalM={totalM}

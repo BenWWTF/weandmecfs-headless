@@ -42,7 +42,7 @@ export default function SupportPage() {
       <main>
         {/* Hero */}
         <section className="mx-auto max-w-[1400px] px-5 pt-10 pb-10 md:px-10 md:pt-16">
-          <p className={`${STICKER} bg-urgency mb-6`}>
+          <p className={`${STICKER} bg-mint mb-6`}>
             Donate &amp; help · Reg. ZG 18163
           </p>
           <h1 className="headline text-[clamp(3rem,10vw,9rem)]">
@@ -53,7 +53,7 @@ export default function SupportPage() {
           <p className="mt-6 max-w-2xl text-lg md:text-xl leading-snug text-ink/80">
             Every donation, no matter the size, fuels critical research and
             brings us one step closer to a cure.{" "}
-            <span className="bg-urgency px-1">
+            <span className="font-bold">
               100% of your donation funds our mission.
             </span>
           </p>
@@ -114,7 +114,7 @@ export default function SupportPage() {
                     onClick={() => setMonthly(f.monthly)}
                     className={`flex-1 ${STICKER} justify-center py-3 ${
                       monthly === f.monthly
-                        ? "bg-urgency"
+                        ? "bg-blue text-white"
                         : "bg-paper hover:bg-mint"
                     }`}
                   >
@@ -175,7 +175,7 @@ export default function SupportPage() {
               </a>
             </div>
 
-            <div id="materials" className="rounded-[2rem] border border-ink bg-urgency p-6 md:p-8">
+            <div id="materials" className="rounded-[2rem] border border-ink bg-mint p-6 md:p-8">
               <p className="headline text-xs text-ink/60">Bank transfer</p>
               <p className="mt-3 headline text-lg leading-tight">
                 WE&amp;ME FOUNDATION

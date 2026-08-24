@@ -23,7 +23,7 @@ export function Hero() {
           width={768}
           height={1376}
           priority
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="absolute bottom-0 left-0 h-[122%] w-full object-cover object-[50%_100%]"
         />
         <div
           className="pointer-events-none absolute inset-0"
@@ -48,7 +48,7 @@ export function Hero() {
             href={DONATE_URL}
             target="_blank"
             rel="noreferrer"
-            className="mt-8 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-bold text-white transition hover:opacity-90"
+            className="mt-8 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-urgency px-7 text-[18px] font-bold text-ink transition hover:brightness-95 focus-visible:ring-2 focus-visible:ring-ink"
           >
             Fund the Research
           </a>
@@ -63,7 +63,7 @@ export function Hero() {
           width={768}
           height={1376}
           priority
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover object-[center_25%]"
         />
         {/* The portrait asset is much taller than the container; the
             gradient only kicks in over the bottom ~40 % so the person's
@@ -84,7 +84,7 @@ export function Hero() {
               href={DONATE_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-bold text-white transition hover:opacity-90"
+              className="mt-6 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-urgency px-7 text-[18px] font-bold text-ink transition hover:brightness-95 focus-visible:ring-2 focus-visible:ring-ink"
             >
               Fund the Research
             </a>

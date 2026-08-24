@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { withBasePath } from "@/lib/basePath";
+import { SpotFigure } from "@/components/blog/SpotFigure";
 
 export const revalidate = 300;
 
@@ -157,7 +158,7 @@ export default function BlogIndex() {
         <div className="mx-auto max-w-[1200px] px-7 md:px-8">
           <SectionRule label="Featured" />
           <Link
-            href={`/news/${FEATURED.slug}`}
+            href={`/blog/${FEATURED.slug}`}
             className="featured-breathe group grid gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-14 items-center rounded-2xl p-6 sm:p-10 lg:p-14"
           >
             <div className="order-2 lg:order-1">
@@ -226,7 +227,7 @@ export default function BlogIndex() {
               {START_HERE.map((p) => (
                 <li key={p.title}>
                   <Link
-                    href={`/news/${p.slug}`}
+                    href={`/blog/${p.slug}`}
                     className="group flex items-center justify-between gap-4 py-6"
                   >
                     <span className="flex min-w-0 items-center gap-3">
@@ -259,7 +260,7 @@ export default function BlogIndex() {
               return (
                 <li key={p.title}>
                   <Link
-                    href={`/news/${p.slug}`}
+                    href={`/blog/${p.slug}`}
                     className={
                       "group grid gap-4 py-8 md:grid-cols-[200px_1fr_auto] md:items-start md:gap-8 rounded-xl -mx-3 px-3 transition-colors " +
                       (isVoices ? "hover:bg-empathy/50" : "")
@@ -327,6 +328,11 @@ export default function BlogIndex() {
         <div className="mx-auto max-w-[1200px] px-7 md:px-8 mt-8">
           <div className="rounded-2xl border border-ink/10 bg-card p-8 sm:p-12 grid gap-8 md:grid-cols-[1.1fr_1fr] md:items-end">
             <div>
+              <SpotFigure
+                variant="a"
+                className="mb-6 h-24 w-auto"
+                title="WE&ME spot illustration"
+              />
               <h2 className="headline text-[clamp(1.8rem,4vw,3rem)] text-ink">
                 The best of the blog,
                 <br />

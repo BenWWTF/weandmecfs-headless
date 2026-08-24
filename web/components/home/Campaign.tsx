@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getCalls } from "@/lib/wp";
 import { decodeHtml } from "@/lib/decode";
 import { formatEuro } from "@/lib/utils";
+import { withBasePath } from "@/lib/basePath";
 
 /**
  * Campaign / Shop slot.
@@ -80,7 +81,17 @@ export async function Campaign() {
           <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink/55">
             Shop
           </p>
-          <h2 className="headline mt-3 text-[34px] md:text-[52px] leading-[1] tracking-[-0.01em]">
+          <div className="mt-5 flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl bg-ink/8">
+            <video
+              src={withBasePath("/videos/campaign-film.mp4")}
+              aria-label="WE&ME campaign film"
+              className="h-full w-full object-cover"
+              controls
+              playsInline
+              preload="metadata"
+            />
+          </div>
+          <h2 className="headline mt-6 text-[34px] md:text-[52px] leading-[1] tracking-[-0.01em]">
             The WE&ME shop is coming.
           </h2>
           <p className="mt-4 max-w-[60ch] text-[17px] leading-[1.45] text-ink/85">
@@ -88,7 +99,7 @@ export async function Campaign() {
             does: 100% to research, overhead covered by the Ströck family.
           </p>
           <Link
-            href="/news#newsletter"
+            href="/blog#newsletter"
             className="mt-6 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-bold text-white transition hover:opacity-90"
           >
             Get the newsletter

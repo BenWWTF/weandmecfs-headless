@@ -41,12 +41,12 @@ export function Disease() {
             </p>
             <p className="text-[17px] leading-[1.45] text-ink/85">
               Based on a prevalence of approximately 0.4% to 0.8%, an estimated{" "}
-              <span className="bg-urgency px-1 font-semibold">
-                32 to 65 million people
-              </span>{" "}
-              worldwide are living with ME/CFS. Despite its enormous impact,
-              there are still no approved treatments, and the disease remains
-              dramatically underfunded and underresearched.
+              <span className="font-semibold">
+                32 to 65 million people worldwide are living with ME/CFS
+              </span>
+              . Despite its enormous impact, there are still no approved
+              treatments, and the disease remains dramatically underfunded and
+              underresearched.
             </p>
             <div>
               <Link

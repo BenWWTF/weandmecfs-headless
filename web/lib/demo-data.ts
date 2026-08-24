@@ -157,6 +157,19 @@ export const DEMO_PROJECTS: Project[] = [
     external_url: "https://www.weandmecfs.org/sequence-me-long-covid/",
     display_order: 3,
   },
+  {
+    id: 4,
+    slug: "weandme-projects-call-2026",
+    title: { rendered: "WE&ME Projects Call 2026" },
+    content: { rendered: "<p>Our current international call, run with the WWTF; patient experts from Science for ME on the jury.</p>" },
+    institution: "Run with the WWTF",
+    amount: 1000000,
+    year: 2026,
+    call_id: 3,
+    lead_team_id: null,
+    external_url: "https://www.weandmecfs.org/projects/",
+    display_order: 4,
+  },
 ];
 
 /* ---------- Team & Advisory Board ----------
@@ -538,6 +551,20 @@ export const DEMO_POSTS: WPPost[] = [
     slug: "inside-the-search-for-a-biomarker",
     title: { rendered: "Inside the search for a biomarker" },
     excerpt: { rendered: "<p>Teams in Vienna, Stanford, Berlin and Melbourne pooled their data for the first time — and the first honest picture of where the science stands.</p>\n" },
+    content: {
+      rendered: [
+        "<p>The first meeting was, by every account, unremarkable. Four principal investigators, three time zones, one video call. What made it different was what nobody quite said out loud: for the first time, they were going to share their raw data.</p>",
+        "<p>ME/CFS research has always been fragmented. Small labs, small cohorts, small budgets. A biomarker, some measurable signal in the blood that could tell a physician <em>yes, this is real, and it is this</em>, has been the field's white whale for four decades. Every few years, a promising paper appears. Every few years, it fails to replicate.</p>",
+        "<h2>Why collaboration is rare</h2>",
+        "<p>The reasons are not scientific. They are structural. Grant cycles reward first authorship. Patient cohorts are jealously guarded. Sample-collection protocols vary in ways that make cross-lab comparison a statistical minefield. The result is a decade of near-misses that nobody can quite piece together.</p>",
+        "<blockquote><p>“We had been chasing the same signal for six years, in three different countries. None of us knew.”</p></blockquote>",
+        "<p>The WE&amp;ME initiative began, quietly, in early 2025. A shared protocol. Standardised freezers. One statistician on retainer for all four teams. The Foundation did not touch the science; it removed the reasons the science could not be shared.</p>",
+        "<h2>What the pooled data showed</h2>",
+        "<p>A year later, the picture is not dramatic. It is something better: consistent. Across 1,847 patients and 892 matched controls, a previously suggestive metabolic signature now looks robust. It is not a diagnostic test. It is, for the first time, a shared starting line.</p>",
+        "<p>The team is careful. Nobody wants another press cycle of promised cures. What they will say is this: the next study, already funded, will follow 4,000 patients for three years. It could not have been designed a year ago.</p>",
+        "<p>None of this is a cure. But for a field that has spent forty years fighting for the right to be taken seriously, a shared starting line is not a small thing. It is, possibly, everything.</p>",
+      ].join("\n"),
+    },
     date: "2026-07-20T10:00:00",
   },
   {
@@ -545,6 +572,15 @@ export const DEMO_POSTS: WPPost[] = [
     slug: "weandme-award-2026",
     title: { rendered: "WE&ME Award 2026 honors leading ME/CFS researchers" },
     excerpt: { rendered: "<p>Matthias Wielscher receives the 2026 award for his work on mechanistic endotypes in ME/CFS.</p>\n" },
+    content: {
+      rendered: [
+        "<p>Matthias Wielscher, at the Medical University of Vienna, has spent the past three years chasing something specific: not a single ME/CFS biomarker, but the handful of distinct biological subtypes that a single biomarker search keeps missing.</p>",
+        "<p>His project, funded through the FWF's alpha+ programme and matched by the WE&amp;ME Foundation, groups patients by shared metabolic and immune signatures rather than by symptoms alone. The working hypothesis is unglamorous but important: ME/CFS is probably not one disease with one cause, and treatments will only work once trials stop averaging across patients who don't actually have the same underlying condition.</p>",
+        "<h2>Why endotypes, not one biomarker</h2>",
+        "<p>Previous trials have failed, in part, because they pooled patients whose biology diverged in ways nobody was measuring. Wielscher's team is building the measurement layer first: a panel that can sort patients into a small number of mechanistic groups before a single drug is tested on any of them.</p>",
+        "<p>The €450,000 award funds two years of cohort recruitment and lab work at the Medical University of Vienna. Results are expected to feed directly into how future WE&amp;ME-funded trials are designed.</p>",
+      ].join("\n"),
+    },
     date: "2026-06-10T10:00:00",
   },
   {
@@ -552,7 +588,80 @@ export const DEMO_POSTS: WPPost[] = [
     slug: "charity-gala-kittsee",
     title: { rendered: "Charity Gala for ME/CFS at Kittsee Castle" },
     excerpt: { rendered: "<p>Save the date: 14 September 2026, Kittsee Castle, Burgenland.</p>\n" },
+    content: {
+      rendered: [
+        "<p>On 14 September 2026, the WE&amp;ME Foundation will host its first charity gala at Kittsee Castle in Burgenland — an evening built for one purpose: getting the ME/CFS community, its researchers and its donors into the same room, at the same time, for the first time.</p>",
+        "<h2>What the evening funds</h2>",
+        "<p>Every ticket and every auction lot goes directly into the next research cohort. As with every WE&amp;ME donation, the Ströck family covers the evening's own costs, so nothing raised on the night is spent running the event.</p>",
+        "<p>Doors open at 6pm. A short programme mid-evening will introduce this year's funded research teams in person, several of whom are travelling from outside Austria to attend.</p>",
+      ].join("\n"),
+    },
     date: "2026-05-15T10:00:00",
+  },
+  {
+    id: 4,
+    slug: "i-miss-who-i-was-before",
+    title: { rendered: "“I miss who I was before.” Three patients on the years in between" },
+    excerpt: { rendered: "<p>A long conversation about identity, grief, and the small rooms where life gets lived.</p>\n" },
+    content: {
+      rendered: [
+        "<p>Ask someone with ME/CFS what they miss most and the answer is rarely a specific activity. It is closer to a version of themselves: the person who could make plans two weeks out, who didn't have to calculate the cost of a phone call.</p>",
+        "<p>Over three conversations, spread across as many months to fit around each person's energy, three patients spoke about identity, grief, and what actually helps.</p>",
+        "<h2>“The illness doesn't pause for grief”</h2>",
+        "<p>All three described a specific, private kind of mourning: for a career, for friendships that didn't survive years of cancelled plans, for a body that used to be reliable. None of them described it as self-pity. It read more like inventory.</p>",
+        "<blockquote><p>“I'm not waiting to be who I was. I'm trying to figure out who I am now, in this room, with this much energy.”</p></blockquote>",
+        "<p>What helped, consistently, was not being asked to perform recovery for other people's comfort. Pacing, plainly explained, and a small number of people who stopped asking “have you tried yoga.”</p>",
+      ].join("\n"),
+    },
+    date: "2026-06-18T10:00:00",
+  },
+  {
+    id: 5,
+    slug: "mitochondrial-study-2026",
+    title: { rendered: "What the 2026 mitochondrial study actually says" },
+    excerpt: { rendered: "<p>Most of the press missed the headline. We read the paper so you don't have to.</p>\n" },
+    content: {
+      rendered: [
+        "<p>The headlines called it “the mitochondrial breakthrough.” The paper itself is more careful, and more interesting.</p>",
+        "<p>The study, run across two labs, measured how efficiently patient-derived cells produced energy under load, compared with matched healthy controls. It found a real, statistically significant difference. It did not find a cause, and the authors say so directly in their own discussion section.</p>",
+        "<h2>What was actually measured</h2>",
+        "<p>Cells from 64 patients and 58 controls were pushed through a standard stress test on a lab bench, not inside a living person. The patient cells produced less usable energy under load and recovered more slowly afterward. That is a real signal. It is not, on its own, evidence that mitochondria are the root cause of ME/CFS symptoms.</p>",
+        "<p>Two of the paper's authors, speaking with us on the record, were blunt about the gap between the finding and the coverage: “This is one piece of a much larger picture. It's useful. It's not the answer.”</p>",
+      ].join("\n"),
+    },
+    date: "2026-06-06T10:00:00",
+  },
+  {
+    id: 6,
+    slug: "nih-funding-mecfs",
+    title: { rendered: "Why NIH funding for ME/CFS keeps falling" },
+    excerpt: { rendered: "<p>The numbers, the politics, and what the Foundation is doing about it.</p>\n" },
+    content: {
+      rendered: [
+        "<p>ME/CFS receives a fraction of the US federal research funding that its disease burden would predict, and the gap has not meaningfully closed in a decade.</p>",
+        "<h2>The numbers</h2>",
+        "<p>By the NIH's own disease-burden-adjusted estimates, ME/CFS funding remains among the most disproportionately low of any major chronic illness category, alongside a small number of other historically under-funded conditions. Advocacy groups have made this case for years; the funding line has moved only slightly.</p>",
+        "<p>The reasons are political as much as scientific: a disease with no single diagnostic test struggles to build the same institutional momentum as one with a clear biomarker and an established research community lobbying for it every budget cycle.</p>",
+        "<h2>What the Foundation is doing</h2>",
+        "<p>WE&amp;ME can't move a national budget line. What it can do is fund the kind of rigorous, shared-protocol research that makes the case for bigger public funding — which is a large part of why the Foundation insists on 100% of donations reaching research, with zero overhead.</p>",
+      ].join("\n"),
+    },
+    date: "2026-05-22T10:00:00",
+  },
+  {
+    id: 7,
+    slug: "fellowships-2026",
+    title: { rendered: "ME/CFS Fellowships 2026: the seven funded projects" },
+    excerpt: { rendered: "<p>From glycan analysis to Mendelian randomisation: a tour of the seven research stays WE&ME and the WWTF are funding this year.</p>\n" },
+    content: {
+      rendered: [
+        "<p>This year's ME/CFS Fellowships, co-funded with the WWTF, send seven early-career researchers into labs across Europe and North America for focused research stays. The projects range widely: glycan profiling of patient plasma, Mendelian randomisation studies looking for causal genetic signals, and two projects extending the pooled-cohort protocol from this year's biomarker work into new patient groups.</p>",
+        "<h2>Why fellowships, not just grants</h2>",
+        "<p>A fellowship buys something a standard grant doesn't: a researcher physically embedded in a lab that already has the equipment, the cohort access, and the institutional knowledge their home institution lacks. For a field this fragmented, that kind of cross-pollination matters as much as the funding itself.</p>",
+        "<p>All seven fellows are expected to publish their findings openly, and several will present preliminary results at the Foundation's research day in early 2027.</p>",
+      ].join("\n"),
+    },
+    date: "2026-04-14T10:00:00",
   },
 ];
 

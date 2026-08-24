@@ -162,7 +162,7 @@ export function SiteNav() {
         <div className="flex items-center gap-2 md:gap-3">
           <Link
             href="/support#donations"
-            className="inline-flex items-center rounded-full bg-blue px-4 py-2 md:px-5 md:py-2.5 text-sm font-semibold text-white hover:opacity-90 transition"
+            className="inline-flex items-center rounded-full bg-urgency px-4 py-2 md:px-5 md:py-2.5 text-sm font-bold text-ink transition hover:brightness-95 focus-visible:ring-2 focus-visible:ring-ink"
           >
             {showFund && !open ? "Fund the Research" : "Donate"}
           </Link>
