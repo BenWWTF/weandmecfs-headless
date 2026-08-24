@@ -157,6 +157,19 @@ export const DEMO_PROJECTS: Project[] = [
     external_url: "https://www.weandmecfs.org/sequence-me-long-covid/",
     display_order: 3,
   },
+  {
+    id: 4,
+    slug: "weandme-projects-call-2026",
+    title: { rendered: "WE&ME Projects Call 2026" },
+    content: { rendered: "<p>Our current international call, run with the WWTF; patient experts from Science for ME on the jury.</p>" },
+    institution: "Run with the WWTF",
+    amount: 1000000,
+    year: 2026,
+    call_id: 3,
+    lead_team_id: null,
+    external_url: "https://www.weandmecfs.org/projects/",
+    display_order: 4,
+  },
 ];
 
 /* ---------- Team & Advisory Board ----------
