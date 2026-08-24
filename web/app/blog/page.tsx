@@ -12,7 +12,8 @@ export async function generateMetadata() {
   };
 }
 
-const FEATURED_IMG = withBasePath("/images/post-header.jpg");
+const FEATURED_IMG = withBasePath("/images/blog-featured.jpg");
+const LENA_AVATAR = withBasePath("/images/author-lena.jpg");
 
 const CATEGORY_COLORS: Record<string, string> = {
   Research: "#2e73db",
@@ -172,9 +173,14 @@ export default function BlogIndex() {
               </p>
               <div className="mt-8 flex items-center gap-3 text-sm">
                 <span className="inline-flex items-center gap-2.5">
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-blue text-paper text-xs font-medium tracking-tight">
-                    LM
-                  </span>
+                  <img
+                    src={LENA_AVATAR}
+                    alt={FEATURED.author}
+                    width={36}
+                    height={36}
+                    loading="lazy"
+                    className="h-9 w-9 rounded-full object-cover grayscale"
+                  />
                   <span className="text-ink">{FEATURED.author}</span>
                 </span>
                 <span className="text-ink/40">·</span>
@@ -182,7 +188,7 @@ export default function BlogIndex() {
                   {FEATURED.date} · {FEATURED.readTime}
                 </span>
                 <span className="ml-auto hidden sm:inline-flex items-center gap-1 text-sm font-medium text-ink group-hover:gap-2 transition-all">
-                  Read →
+                  Read <span aria-hidden>↗</span>
                 </span>
               </div>
             </div>
@@ -286,9 +292,14 @@ export default function BlogIndex() {
                       </p>
                       <div className="mt-5 flex items-center gap-2.5 text-sm text-ink/70">
                         <span className="inline-flex items-center gap-2.5">
-                          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-blue text-paper text-[11px] font-medium tracking-tight">
-                            LM
-                          </span>
+                          <img
+                            src={LENA_AVATAR}
+                            alt={p.author}
+                            width={28}
+                            height={28}
+                            loading="lazy"
+                            className="h-7 w-7 rounded-full object-cover grayscale"
+                          />
                           <span className="text-ink">{p.author}</span>
                         </span>
                         <span className="text-ink/40">·</span>
@@ -311,41 +322,9 @@ export default function BlogIndex() {
         </div>
       </section>
 
-      {/* ————————— Foundation bridge ————————— */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-[1200px] px-7 md:px-8 pb-16 md:pb-20 pt-10">
-          <div className="max-w-2xl border-t border-ink/15 pt-8">
-            <p className="text-[11px] uppercase tracking-[0.24em] text-ink/55 mb-5">
-              The foundation behind this blog
-            </p>
-            <p className="text-[18px] sm:text-[20px] leading-relaxed text-ink/80 max-w-[34em]">
-              The WE&amp;ME Foundation funds biomedical ME/CFS research. Our
-              family covers all overhead, so 100% of every donation goes to
-              research.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <a
-                href={DONATE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full bg-urgency px-4 py-2 text-sm font-medium text-ink hover:brightness-95 transition"
-              >
-                Donate
-              </a>
-              <Link
-                href="/foundation"
-                className="text-sm font-medium text-blue underline underline-offset-4 decoration-blue/60 hover:decoration-blue"
-              >
-                About the foundation
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ————————— Newsletter ————————— */}
       <section id="newsletter" className="bg-white">
-        <div className="mx-auto max-w-[1200px] px-7 md:px-8 mt-8 mb-24">
+        <div className="mx-auto max-w-[1200px] px-7 md:px-8 mt-8">
           <div className="rounded-2xl border border-ink/10 bg-card p-8 sm:p-12 grid gap-8 md:grid-cols-[1.1fr_1fr] md:items-end">
             <div>
               <h2 className="headline text-[clamp(1.8rem,4vw,3rem)] text-ink">
@@ -386,6 +365,38 @@ export default function BlogIndex() {
                 A few emails a year. Unsubscribe anytime.
               </p>
             </form>
+          </div>
+        </div>
+      </section>
+
+      {/* ————————— Foundation bridge ————————— */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1200px] px-7 md:px-8 pb-16 md:pb-20 pt-10">
+          <div className="max-w-2xl border-t border-ink/15 pt-8">
+            <p className="text-[11px] uppercase tracking-[0.24em] text-ink/55 mb-5">
+              The foundation behind this blog
+            </p>
+            <p className="text-[18px] sm:text-[20px] leading-relaxed text-ink/80 max-w-[34em]">
+              The WE&amp;ME Foundation funds biomedical ME/CFS research. Our
+              family covers all overhead, so 100% of every donation goes to
+              research.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <a
+                href={DONATE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full bg-urgency px-4 py-2 text-sm font-medium text-ink hover:brightness-95 transition"
+              >
+                Donate
+              </a>
+              <Link
+                href="/foundation"
+                className="text-sm font-medium text-blue underline underline-offset-4 decoration-blue/60 hover:decoration-blue"
+              >
+                About the foundation
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -131,7 +131,7 @@ export function SiteNav() {
             <div key={g.label} className="group relative">
               <Link
                 href={g.hash ? `${g.href}#${g.hash}` : g.href}
-                className="text-[15px] font-medium text-ink/70 hover:text-ink transition-colors"
+                className="text-[15px] font-semibold text-ink/70 hover:text-ink transition-colors"
               >
                 {g.label}
               </Link>
@@ -167,7 +167,7 @@ export function SiteNav() {
             {showFund && !open ? "Fund the Research" : "Donate"}
           </Link>
 
-          <div className="relative hidden lg:block">
+          <div className="relative">
             <button
               type="button"
               onClick={() => setLangOpen((o) => !o)}
@@ -277,6 +277,24 @@ export function SiteNav() {
                 </div>
               );
             })}
+
+            {/* Language toggle in the mobile drawer */}
+            <div className="mt-6 flex items-center gap-2 border-t border-ink/10 pt-4">
+              <span className="text-[11px] uppercase tracking-[0.08em] text-ink/55">
+                Language
+              </span>
+              <span className="ml-auto inline-flex items-center gap-1 rounded-full border border-ink/20 px-3 py-1.5 text-[12px] font-bold tracking-wide text-ink/80">
+                {currentLang}
+              </span>
+              <a
+                href={deUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 rounded-full border border-blue/30 bg-blue/10 px-3 py-1.5 text-[12px] font-bold tracking-wide text-blue hover:bg-blue/20"
+              >
+                DE →
+              </a>
+            </div>
           </div>
         </div>
       )}

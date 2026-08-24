@@ -174,11 +174,45 @@ export default async function ResearchPage() {
               <br />
               One goal.
             </h1>
-            <p className={`mt-5 ${BODY} max-w-[46ch]`}>
-              We fund biomedical ME/CFS research that would otherwise not
-              happen. Five principles guide every call, every award and every
-              euro.
-            </p>
+            <div className={`mt-6 ${BODY} max-w-[65ch] space-y-5`}>
+              <p>
+                ME/CFS remains one of the most underfunded diseases in medicine
+                relative to its burden: few dedicated centres, no approved
+                treatments, researchers working in isolation on scattered
+                grants. Only now is that beginning to change. Public funders,
+                above all in Germany, are investing at a scale the field has
+                never seen, and the DACH region is becoming a centre of gravity
+                for ME/CFS research.
+              </p>
+              <p>
+                New institutional money, though, flows into old structures.
+                Research funding is organised country by country: every fund
+                is bounded by national tax rules and mandates, every
+                university and region decides for itself what to build, and
+                even EU-level projects must serve many constituencies at once.
+                Each level of the system optimises for its own goals. None is
+                accountable for the one measure that matters to patients: how
+                fast this disease gets solved.
+              </p>
+              <p>
+                That measure is ours. WE&amp;ME optimises for time to a cure:
+                not for any country&rsquo;s research budget, not for any
+                institution&rsquo;s standing. Institutional and private
+                funding are different routes to that goal, neither better nor
+                worse, and strongest when they complement each other.
+                Institutional programmes bring scale and continuity, and must
+                balance many interests to do so. Private funding can
+                concentrate, move across borders, and place the bets the
+                system leaves open. We are built to use that freedom: our
+                running costs are covered, our calls are operated by the FWF
+                and the WWTF, two of the most prestigious research funding
+                organisations in Central Europe, with patient experts embedded
+                throughout, and we are bound to no border. There is no optimal
+                strategy for a disease this incompletely understood, so we
+                hold ourselves to the next best thing: five principles that
+                govern every euro we allocate.
+              </p>
+            </div>
 
             <ol className="mt-8 divide-y divide-ink/15 border-t border-b border-ink/15">
               {principles.map((p) => (
