@@ -70,7 +70,7 @@ export default function AboutPage() {
         <div className={`${WRAP} md:grid md:grid-cols-12 md:gap-16`}>
           <div className="md:col-span-8">
             <p className={EYEBROW}>What is ME/CFS?</p>
-            <h1 className="headline mt-3 text-[40px] md:text-[64px] font-semibold leading-[1] tracking-[-0.01em]">
+            <h1 className="headline mt-3 text-[40px] md:text-[64px] leading-[1] tracking-[-0.01em]">
               Imagine getting the flu, and never getting out of bed.
             </h1>
             <p className="mt-6 text-[17px] leading-[1.5] text-ink/85 max-w-[60ch]">

@@ -48,7 +48,7 @@ export function Hero() {
             href={DONATE_URL}
             target="_blank"
             rel="noreferrer"
-            className="mt-8 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-semibold text-white transition hover:opacity-90"
+            className="mt-8 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-bold text-white transition hover:opacity-90"
           >
             Fund the Research
           </a>
@@ -84,7 +84,7 @@ export function Hero() {
               href={DONATE_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-semibold text-white transition hover:opacity-90"
+              className="mt-6 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-bold text-white transition hover:opacity-90"
             >
               Fund the Research
             </a>

@@ -495,7 +495,9 @@ export const DEMO_TEAM: DemoTeamMember[] = [
 
 /* ---------- Guardians (recurring donor spotlights) ---------- */
 
-export const DEMO_GUARDIANS: Guardian[] = [
+type DemoGuardian = Guardian & { portrait: string };
+
+export const DEMO_GUARDIANS: DemoGuardian[] = [
   {
     id: 1,
     slug: "kathrin-fuchs",
@@ -503,6 +505,7 @@ export const DEMO_GUARDIANS: Guardian[] = [
     quote: "I show up where he can’t — at events, in conversations, online. Keeping this disease visible is the least I can do.",
     since: 2024,
     external_url: null,
+    portrait: "/people/kathrin-fuchs.jpg",
     display_order: 1,
   },
   {
@@ -512,6 +515,7 @@ export const DEMO_GUARDIANS: Guardian[] = [
     quote: "Every kilometre I run, I run for someone who can’t leave their bed. It’s my way of lending her my energy.",
     since: 2023,
     external_url: null,
+    portrait: "/people/julia-wieseltaler.jpg",
     display_order: 2,
   },
   {
@@ -521,6 +525,7 @@ export const DEMO_GUARDIANS: Guardian[] = [
     quote: "I speak up wherever I have a platform, because most patients simply cannot. Helplessness turns into action, month after month.",
     since: 2025,
     external_url: null,
+    portrait: "/people/laura-karasinski.png",
     display_order: 3,
   },
 ];

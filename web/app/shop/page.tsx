@@ -13,7 +13,7 @@ export default function ShopPage() {
         <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
           Shop
         </p>
-        <h1 className="headline mt-3 text-[34px] font-semibold leading-[1] tracking-[-0.01em] md:text-[52px]">
+        <h1 className="headline mt-3 text-[34px] leading-[1] tracking-[-0.01em] md:text-[52px]">
           The WE&amp;ME shop is coming.
         </h1>
         <p className="mt-5 max-w-[34ch] text-[17px] leading-[1.45] text-ink/85">

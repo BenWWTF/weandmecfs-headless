@@ -221,7 +221,7 @@ function NodeContent({
             href={donateUrl(amount)}
             target="_blank"
             rel="noreferrer"
-            className="mt-4 inline-flex h-[52px] items-center justify-center rounded-full bg-blue px-7 text-[17px] font-semibold tabular-nums text-white no-underline transition hover:opacity-90"
+            className="mt-4 inline-flex h-[52px] items-center justify-center rounded-full bg-blue px-7 text-[17px] font-bold tabular-nums text-white no-underline transition hover:opacity-90"
           >
             Give €{amount}
           </a>
@@ -331,7 +331,7 @@ function NodeContent({
                     href={p.external_url ?? "#"}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[16px] font-semibold leading-[1.3] text-blue no-underline"
+                    className="text-[16px] font-bold leading-[1.3] text-blue no-underline"
                   >
                     {decodeHtml(p.title.rendered)}
                   </a>
@@ -342,7 +342,7 @@ function NodeContent({
                   )}
                 </div>
                 {p.amount != null && (
-                  <span className="shrink-0 whitespace-nowrap text-right text-[14px] tabular-nums text-[#0a0a0a]">
+                  <span className="shrink-0 whitespace-nowrap text-right text-[14px] font-bold tabular-nums text-[#0a0a0a]">
                     {formatEuro(p.amount).replace(".00", "")}
                   </span>
                 )}
@@ -646,10 +646,10 @@ export function WhyFund({ projects }: { projects: Project[] }) {
   return (
     <section ref={root} className="w-full bg-white text-[#0a0a0a]">
       <div className="mx-auto w-full max-w-[1080px] px-7 pt-16 pb-16 lg:px-12">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
+        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue">
           At a glance
         </p>
-        <h2 className="headline mt-3 text-[34px] font-semibold leading-[1] tracking-[-0.02em] lg:text-[52px]">
+        <h2 className="headline mt-3 text-[34px] leading-[1] tracking-[-0.02em] lg:text-[52px]">
           Why fund WE&amp;ME?
         </h2>
 

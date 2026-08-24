@@ -103,6 +103,9 @@ const GuardianSchema = z.object({
   since: z.number().nullable().optional(),
   external_url: z.string().nullable().optional(),
   display_order: z.number().nullable().optional(),
+  // Demo-data only: local path to a portrait under /public/people/.
+  // The live site serves portraits via `_embedded["wp:featuredmedia"]`.
+  portrait: z.string().optional(),
   _embedded: z.object({
     "wp:featuredmedia": z.array(MediaSchema).optional(),
   }).optional(),

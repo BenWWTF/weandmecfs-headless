@@ -46,13 +46,13 @@ export function Researcher() {
                 </p>
               </blockquote>
               <figcaption className="mt-5">
-                <span className="block text-[17px] font-normal leading-[1.4] text-ink">
+                <span className="block text-[17px] font-bold leading-[1.4] text-ink">
                   Akiko Iwasaki
                 </span>
-                <span className="block text-[15px] leading-[1.4] text-ink/55">
+                <span className="block text-[15px] font-medium leading-[1.4] text-ink/70">
                   Sterling Professor of Immunobiology, Yale School of Medicine
                 </span>
-                <span className="block text-[15px] leading-[1.4] text-ink/55">
+                <span className="block text-[15px] font-medium leading-[1.4] text-ink/70">
                   HHMI Investigator
                 </span>
               </figcaption>

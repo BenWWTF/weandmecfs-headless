@@ -17,10 +17,10 @@ export function Disease() {
       <div className="bg-empathy text-ink">
         <div className="mx-auto w-full max-w-[1200px] px-7 py-16 md:px-12 md:grid md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue">
               What is ME/CFS?
             </p>
-            <h2 className="headline mt-3 text-[34px] md:text-[52px] font-semibold leading-[1] tracking-[-0.01em]">
+            <h2 className="headline mt-3 text-[34px] md:text-[52px] leading-[1] tracking-[-0.01em]">
               Imagine getting the flu — and never getting out of bed.
             </h2>
             <Image

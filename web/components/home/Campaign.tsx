@@ -26,14 +26,14 @@ export async function Campaign() {
       <section className="w-full">
         <div className="bg-urgency text-ink">
           <div className="mx-auto w-full max-w-[1200px] px-7 py-16 md:px-12">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink/55">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink/55">
               Open call
             </p>
-            <h2 className="headline mt-3 text-[34px] md:text-[52px] font-semibold leading-[1] tracking-[-0.01em]">
+            <h2 className="headline mt-3 text-[34px] md:text-[52px] leading-[1] tracking-[-0.01em]">
               {decodeHtml(featured.title.rendered)}
             </h2>
             {featured.amount_total && (
-              <p className="mt-4 headline text-[20px] font-semibold text-ink">
+              <p className="mt-4 headline text-[20px] text-ink">
                 {formatEuro(featured.amount_total)} total funding pool
               </p>
             )}
@@ -51,7 +51,7 @@ export async function Campaign() {
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/research"
-                className="inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-semibold text-white transition hover:opacity-90"
+                className="inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-bold text-white transition hover:opacity-90"
               >
                 Read the call
               </Link>
@@ -60,7 +60,7 @@ export async function Campaign() {
                   href={featured.external_url}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full border border-ink px-7 text-[18px] font-semibold text-ink transition hover:bg-ink hover:text-white"
+                  className="inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full border border-ink px-7 text-[18px] font-bold text-ink transition hover:bg-ink hover:text-white"
                 >
                   Submit a proposal →
                 </a>
@@ -77,10 +77,10 @@ export async function Campaign() {
     <section className="w-full">
       <div className="bg-urgency text-ink">
         <div className="mx-auto w-full max-w-[1200px] px-7 py-16 md:px-12">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink/55">
+          <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink/55">
             Shop
           </p>
-          <h2 className="headline mt-3 text-[34px] md:text-[52px] font-semibold leading-[1] tracking-[-0.01em]">
+          <h2 className="headline mt-3 text-[34px] md:text-[52px] leading-[1] tracking-[-0.01em]">
             The WE&ME shop is coming.
           </h2>
           <p className="mt-4 max-w-[60ch] text-[17px] leading-[1.45] text-ink/85">
@@ -89,7 +89,7 @@ export async function Campaign() {
           </p>
           <Link
             href="/news#newsletter"
-            className="mt-6 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-semibold text-white transition hover:opacity-90"
+            className="mt-6 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-bold text-white transition hover:opacity-90"
           >
             Get the newsletter
           </Link>

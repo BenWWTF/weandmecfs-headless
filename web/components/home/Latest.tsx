@@ -35,10 +35,10 @@ export async function Latest() {
   return (
     <section className="bg-white">
       <div className="mx-auto w-full max-w-[1200px] px-7 py-16 md:px-12">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
+        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue">
           Latest
         </p>
-        <h2 className="headline mt-3 text-[34px] md:text-[52px] font-semibold leading-[1] tracking-[-0.01em]">
+        <h2 className="headline mt-3 text-[34px] md:text-[52px] leading-[1] tracking-[-0.01em]">
           Writing, news &amp; events
         </h2>
 
@@ -63,10 +63,10 @@ export async function Latest() {
                 />
               </div>
               <div className="min-w-0">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
+                <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue">
                   Featured
                 </p>
-                <h3 className="headline mt-1.5 text-[22px] font-semibold leading-[1.1]">
+                <h3 className="headline mt-1.5 text-[22px] leading-[1.1]">
                   {featured.title}
                 </h3>
                 <p className="mt-2 hidden md:block max-w-2xl text-[17px] leading-[1.45] text-ink/85">
@@ -100,10 +100,10 @@ export async function Latest() {
                   />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue">
                     News
                   </p>
-                  <h3 className="headline mt-1.5 text-[22px] font-semibold leading-[1.1]">
+                  <h3 className="headline mt-1.5 text-[22px] leading-[1.1]">
                     {n.title}
                   </h3>
                 </div>

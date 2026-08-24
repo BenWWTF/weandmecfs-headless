@@ -42,7 +42,7 @@ export function Logo({
       <span className={`inline-flex flex-col ${className ?? ""}`}>
         <span className="flex items-center gap-[0.12em]">
           <span
-            className={`font-display font-medium leading-[0.86] tracking-[-0.03em] text-[1em] ${word}`}
+            className={`font-display font-bold leading-[0.86] tracking-[-0.03em] text-[1em] ${word}`}
           >
             WE
             <br />
@@ -54,7 +54,7 @@ export function Logo({
             dotFill={footFill}
           />
         </span>
-        <span className="mt-[0.08em] font-display font-medium leading-none tracking-[-0.03em] text-[0.62em] text-blue">
+        <span className="mt-[0.08em] font-display font-bold leading-none tracking-[-0.03em] text-[0.62em] text-blue">
           Foundation
         </span>
       </span>
@@ -64,7 +64,7 @@ export function Logo({
   return (
     <span className={`inline-flex flex-col ${className ?? ""}`}>
       <span className="flex items-baseline gap-[0.04em]">
-        <span className={`font-display font-medium leading-none tracking-[-0.02em] text-[1em] ${word}`}>
+        <span className={`font-display font-bold leading-none tracking-[-0.02em] text-[1em] ${word}`}>
           WE
         </span>
         <SigneMark
@@ -72,11 +72,11 @@ export function Logo({
           footFill={footFill}
           dotFill={footFill}
         />
-        <span className={`font-display font-medium leading-none tracking-[-0.02em] text-[1em] ${word}`}>
+        <span className={`font-display font-bold leading-none tracking-[-0.02em] text-[1em] ${word}`}>
           ME
         </span>
       </span>
-      <span className="mt-[0.12em] font-display font-medium leading-none tracking-[-0.02em] text-[0.44em] text-blue">
+      <span className="mt-[0.12em] font-display font-bold leading-none tracking-[-0.02em] text-[0.44em] text-blue">
         Foundation
       </span>
     </span>

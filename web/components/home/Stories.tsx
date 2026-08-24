@@ -44,10 +44,10 @@ export async function Stories() {
   return (
     <section className="bg-white">
       <div className="mx-auto w-full max-w-[1200px] px-7 py-16 md:px-12">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-blue">
+        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue">
           Life with ME/CFS
         </p>
-        <h2 className="headline mt-3 text-[34px] md:text-[52px] font-semibold leading-[1] tracking-[-0.01em]">
+        <h2 className="headline mt-3 text-[34px] md:text-[52px] leading-[1] tracking-[-0.01em]">
           Real people. Real stakes.
         </h2>
         <p className="mt-5 text-[17px] leading-[1.45] text-ink/85 max-w-[34ch]">
@@ -72,7 +72,7 @@ export async function Stories() {
                 eager={i < 3}
                 imgClassName="transition-transform duration-500 group-hover:scale-[1.03]"
               />
-              <p className="headline mt-4 text-[22px] font-semibold leading-[1.1]">
+              <p className="headline mt-4 text-[22px] leading-[1.1]">
                 {s.name}
               </p>
               <p className="mt-1 text-[14px] text-ink/55">{s.loc}</p>

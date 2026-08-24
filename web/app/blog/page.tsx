@@ -230,7 +230,7 @@ export default function BlogIndex() {
                     className="group flex items-center justify-between gap-4 py-6"
                   >
                     <span className="flex min-w-0 items-center gap-3">
-                      <span className="text-[18px] sm:text-[20px] font-medium tracking-tight text-ink leading-snug group-hover:text-blue transition-colors">
+                      <span className="text-[18px] sm:text-[20px] font-bold tracking-tight text-ink leading-snug group-hover:text-blue transition-colors">
                         {p.title}
                       </span>
                       <span aria-hidden className="text-blue text-lg shrink-0">
@@ -284,7 +284,7 @@ export default function BlogIndex() {
                         <span aria-hidden className="text-ink/25">·</span>
                         <span>{p.date}</span>
                       </div>
-                      <h3 className="text-[20px] sm:text-[22px] md:text-[26px] font-medium tracking-tight text-ink leading-[1.18] group-hover:text-blue transition-colors">
+                      <h3 className="text-[20px] sm:text-[22px] md:text-[26px] font-bold tracking-tight text-ink leading-[1.18] group-hover:text-blue transition-colors">
                         {p.title}
                       </h3>
                       <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink/65">
