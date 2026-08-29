@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 
 final class WeAndMe_Headless_Revalidation {
 
-	private const OPTION_KEY = 'weandme_headless_revalidation';
+	public const OPTION_KEY = 'weandme_headless_revalidation';
 
 	public function register(): void {
 		foreach ( array_keys( WeAndMe_Headless_CPT::SCHEMA ) as $slug ) {

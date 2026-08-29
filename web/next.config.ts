@@ -29,12 +29,12 @@ const nextConfig: NextConfig = {
   assetPrefix: BASE_PATH,
 
   // `output: 'export'` enables full static export for the GitHub
-  // Pages demo. When deploying to Nessus (live WP) we keep ISR
-  // available, so this stays on in this build. To go back to the
-  // dynamic ISR mode for production, comment out the next two lines
-  // and set `unoptimized: false` below.
-  output: "export",
-  trailingSlash: true,
+  // Pages demo build. Live WP mode (local dev against :8080, or the
+  // Nessus deploy) runs as a normal Next.js server with ISR, so
+  // `output` stays unset there — `output: 'export'` requires
+  // `images.unoptimized: true` unconditionally, which would break
+  // the WP-served image proxy in live mode.
+  ...(isDemoBuild ? { output: "export" as const, trailingSlash: true } : {}),
 
   images: {
     // Unoptimized is required for `output: 'export'`. With a live

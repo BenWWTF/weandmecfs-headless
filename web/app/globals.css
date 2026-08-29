@@ -30,6 +30,7 @@
   --color-paper: var(--paper);
   --color-ink: var(--ink);
   --color-mint: var(--mint);
+  --color-mint-line: var(--mint-line);
   --color-blue: var(--blue);
   --color-urgency: var(--urgency);
   --color-empathy: var(--empathy);
@@ -50,6 +51,7 @@
 :root {
   --paper: #ffffff;
   --mint: #abd4ba;
+  --mint-line: #9dc4a8;
   --blue: #2e73db;
   --urgency: #ceef0a;
   --empathy: #ccba96;
@@ -67,6 +69,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
   body {
     background-color: var(--color-background);
