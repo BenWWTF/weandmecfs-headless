@@ -5,6 +5,7 @@ import Image from "next/image";
 import type { TeamMember } from "@/lib/wp";
 import { Reveal } from "@/components/site/Reveal";
 import { PageCTA } from "@/components/site/PageCTA";
+import { Split } from "@/components/site/Split";
 
 export const revalidate = 300;
 
@@ -22,7 +23,7 @@ const ABOUT_HERO = withBasePath("/images/about-hero.jpg");
 const EYEBROW =
   "text-[11px] font-semibold uppercase tracking-[0.08em] text-blue";
 const HEADLINE =
-  "headline text-[34px] md:text-[52px] font-semibold leading-[1] tracking-[-0.01em]";
+  "headline text-[34px] md:text-[52px] font-semibold leading-[1] tracking-[-0.01em] lg:text-[46px]";
 const BODY = "text-[17px] leading-[1.5] text-ink/85 max-w-[65ch]";
 const WRAP = "mx-auto w-full max-w-[1200px] px-7 py-16 md:px-12";
 
@@ -84,72 +85,86 @@ export default async function FoundationPage() {
       {/* Mission */}
       <section id="mission" className="scroll-mt-24 bg-empathy text-ink">
         <Reveal className={WRAP}>
-          <p className={EYEBROW}>Our mission</p>
-          <h2 className={`${HEADLINE} mt-3`}>Ending decades of neglect.</h2>
-          <p className={`${BODY} mt-5`}>
-            WE&amp;ME is an independent Austrian foundation advancing
-            high-quality biomedical research, education and awareness,
-            international collaboration, and lasting systemic change. The
-            Ströck family finances the foundation&rsquo;s organizational
-            structure and covers all overhead costs. This means that every
-            euro donated goes directly into research.
-          </p>
-          <p className={`${BODY} mt-5`}>
-            Our mission is to end the decades of neglect surrounding ME/CFS
-            and accelerate both medical and social progress. This means
-            better diagnosis, effective treatments, and ultimately a cure, as
-            well as recognition and access to welfare benefits. The Ströck
-            family&rsquo;s own experience with ME/CFS lends this mission a
-            particular sense of urgency.
-          </p>
-          <p className={`${BODY} mt-5`}>
-            Patients are active partners in this work. They help shape our
-            strategy and decisions across the foundation, particularly the
-            design of our research funding programme and its calls. Patient
-            representatives serve as full voting members of the funding jury,
-            assess proposals, and contribute directly to funding
-            recommendations. We also require the projects we fund to involve
-            patients meaningfully throughout the research process, not simply
-            as study participants.
-          </p>
-          <Image
-            src={ILLU}
-            alt=""
-            aria-hidden
-            width={220}
-            height={200}
-            className="mt-10 hidden md:block w-[180px] h-auto"
-          />
+          <Split
+            left={
+              <>
+                <p className={EYEBROW}>Our mission</p>
+                <h2 className={`${HEADLINE} mt-3`}>Ending decades of neglect.</h2>
+              </>
+            }
+          >
+            <p className={`${BODY} mt-5`}>
+              WE&amp;ME is an independent Austrian foundation advancing
+              high-quality biomedical research, education and awareness,
+              international collaboration, and lasting systemic change. The
+              Ströck family finances the foundation&rsquo;s organizational
+              structure and covers all overhead costs. This means that every
+              euro donated goes directly into research.
+            </p>
+            <p className={`${BODY} mt-5`}>
+              Our mission is to end the decades of neglect surrounding ME/CFS
+              and accelerate both medical and social progress. This means
+              better diagnosis, effective treatments, and ultimately a cure, as
+              well as recognition and access to welfare benefits. The Ströck
+              family&rsquo;s own experience with ME/CFS lends this mission a
+              particular sense of urgency.
+            </p>
+            <p className={`${BODY} mt-5`}>
+              Patients are active partners in this work. They help shape our
+              strategy and decisions across the foundation, particularly the
+              design of our research funding programme and its calls. Patient
+              representatives serve as full voting members of the funding jury,
+              assess proposals, and contribute directly to funding
+              recommendations. We also require the projects we fund to involve
+              patients meaningfully throughout the research process, not simply
+              as study participants.
+            </p>
+            <Image
+              src={ILLU}
+              alt=""
+              aria-hidden
+              width={220}
+              height={200}
+              className="mt-10 hidden md:block w-[180px] h-auto"
+            />
+          </Split>
         </Reveal>
       </section>
 
       {/* Story */}
       <section id="story" className="scroll-mt-24 bg-white">
         <Reveal className={WRAP}>
-          <p className={EYEBROW}>Our story</p>
-          <h2 className={`${HEADLINE} mt-3`}>Founded in Vienna, 2020.</h2>
-          <p className={`${BODY} mt-5`}>
-            The WE&amp;ME Foundation, formerly the TEMPI Foundation, was
-            founded in Vienna in 2020 by the Ströck family, known in Austria
-            for its Ströck bakeries. It was established because several
-            members of the family are affected by ME/CFS.
-          </p>
-          <p className={`${BODY} mt-5`}>
-            Two brothers, Christoph and Philipp Ströck, are affected by the
-            disease. Christoph was diagnosed in 2016, several years after the
-            onset of his illness. Widespread misconceptions about ME/CFS
-            contributed to a severe deterioration in his health during this
-            period. Philipp was diagnosed in 2018.
-          </p>
-          <p className={`${BODY} mt-5`}>
-            The family saw firsthand the serious gaps in medical knowledge,
-            appropriate care, and reliable support. Patients are often left
-            largely on their own when seeking diagnosis and treatment,
-            managing the effects of the disease on their working lives, and
-            securing the social support they need. These circumstances had a
-            profound impact on the family and continue to shape WE&amp;ME&rsquo;s
-            work today.
-          </p>
+          <Split
+            left={
+              <>
+                <p className={EYEBROW}>Our story</p>
+                <h2 className={`${HEADLINE} mt-3`}>Founded in Vienna, 2020.</h2>
+              </>
+            }
+          >
+            <p className={`${BODY} mt-5`}>
+              The WE&amp;ME Foundation, formerly the TEMPI Foundation, was
+              founded in Vienna in 2020 by the Ströck family, known in Austria
+              for its Ströck bakeries. It was established because several
+              members of the family are affected by ME/CFS.
+            </p>
+            <p className={`${BODY} mt-5`}>
+              Two brothers, Christoph and Philipp Ströck, are affected by the
+              disease. Christoph was diagnosed in 2016, several years after the
+              onset of his illness. Widespread misconceptions about ME/CFS
+              contributed to a severe deterioration in his health during this
+              period. Philipp was diagnosed in 2018.
+            </p>
+            <p className={`${BODY} mt-5`}>
+              The family saw firsthand the serious gaps in medical knowledge,
+              appropriate care, and reliable support. Patients are often left
+              largely on their own when seeking diagnosis and treatment,
+              managing the effects of the disease on their working lives, and
+              securing the social support they need. These circumstances had a
+              profound impact on the family and continue to shape WE&amp;ME&rsquo;s
+              work today.
+            </p>
+          </Split>
         </Reveal>
       </section>
 
@@ -219,30 +234,37 @@ export default async function FoundationPage() {
       {/* Transparency */}
       <section id="transparency" className="scroll-mt-24 bg-mint text-ink">
         <Reveal className={WRAP}>
-          <p className={EYEBROW}>Transparency</p>
-          <h2 className={`${HEADLINE} mt-3`}>Reports.</h2>
-          <p className={`${BODY} mt-5`}>
-            Our annual activity and financial reports provide a clear account
-            of the foundation&rsquo;s work and the use of donations.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-8">
-            <a
-              href="https://www.weandmecfs.org/wp-content/uploads/2026/02/Jahresbericht_2024_WEME.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center text-[16px] font-semibold text-blue no-underline hover:opacity-80"
-            >
-              Activity Report →
-            </a>
-            <a
-              href="https://www.weandmecfs.org/wp-content/uploads/2026/02/Jahresbericht_2024_WEME.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center text-[16px] font-semibold text-blue no-underline hover:opacity-80"
-            >
-              Financial Report →
-            </a>
-          </div>
+          <Split
+            left={
+              <>
+                <p className={EYEBROW}>Transparency</p>
+                <h2 className={`${HEADLINE} mt-3`}>Reports.</h2>
+              </>
+            }
+          >
+            <p className={`${BODY} mt-5`}>
+              Our annual activity and financial reports provide a clear account
+              of the foundation&rsquo;s work and the use of donations.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-8">
+              <a
+                href="https://www.weandmecfs.org/wp-content/uploads/2026/02/Jahresbericht_2024_WEME.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center text-[16px] font-semibold text-blue no-underline hover:opacity-80"
+              >
+                Activity Report →
+              </a>
+              <a
+                href="https://www.weandmecfs.org/wp-content/uploads/2026/02/Jahresbericht_2024_WEME.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center text-[16px] font-semibold text-blue no-underline hover:opacity-80"
+              >
+                Financial Report →
+              </a>
+            </div>
+          </Split>
         </Reveal>
       </section>
 

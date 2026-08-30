@@ -92,6 +92,13 @@ const ProjectSchema = z.object({
   lead_team_id: z.number().nullable().optional(),
   external_url: z.string().nullable().optional(),
   display_order: z.number().nullable().optional(),
+  // Added for the /funded-research listing + detail pages: which
+  // funding instrument this project came out of, its principal
+  // investigator (if any), lifecycle status, and search keywords.
+  instrument: z.string().nullable().optional(),
+  pi: z.string().nullable().optional(),
+  status: z.enum(["running", "completed", "upcoming"]).nullable().optional(),
+  keywords: z.array(z.string()).optional(),
 });
 export type Project = z.infer<typeof ProjectSchema>;
 
@@ -230,6 +237,18 @@ export async function getProjects(): Promise<Project[]> {
     z.array(ProjectSchema),
     { revalidate: homepageRevalidate, tags: ["project", "homepage"], fallback: DEMO_PROJECTS },
   );
+}
+
+export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  if (USE_DEMO_DATA) {
+    return DEMO_PROJECTS.find((p) => p.slug === slug) ?? null;
+  }
+  const projects = await wpFetch(
+    `/project?slug=${encodeURIComponent(slug)}`,
+    z.array(ProjectSchema),
+    { revalidate: homepageRevalidate, tags: ["project", `project:${slug}`], fallback: [] },
+  );
+  return projects[0] ?? null;
 }
 
 export async function getGuardians(): Promise<Guardian[]> {

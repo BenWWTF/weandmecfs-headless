@@ -130,6 +130,9 @@ export const DEMO_PROJECTS: Project[] = [
     lead_team_id: 1,
     external_url: "https://www.weandmecfs.org/projects/",
     display_order: 1,
+    instrument: "Consolidation Call",
+    status: "upcoming",
+    keywords: ["consolidation", "WWTF", "Vienna"],
   },
   {
     id: 2,
@@ -143,6 +146,10 @@ export const DEMO_PROJECTS: Project[] = [
     lead_team_id: 1,
     external_url: "https://www.weandmecfs.org/weme-award-the-winning-project/",
     display_order: 2,
+    instrument: "Emerging Leader Award",
+    pi: "Matthias Wielscher",
+    status: "running",
+    keywords: ["endotypes", "mechanisms", "biomarkers"],
   },
   {
     id: 3,
@@ -156,6 +163,9 @@ export const DEMO_PROJECTS: Project[] = [
     lead_team_id: null,
     external_url: "https://www.weandmecfs.org/sequence-me-long-covid/",
     display_order: 3,
+    instrument: "Partnership",
+    status: "running",
+    keywords: ["genomics", "sequencing", "long covid"],
   },
   {
     id: 4,
@@ -169,6 +179,9 @@ export const DEMO_PROJECTS: Project[] = [
     lead_team_id: null,
     external_url: "https://www.weandmecfs.org/projects/",
     display_order: 4,
+    instrument: "WE&ME Projects Call",
+    status: "running",
+    keywords: ["WWTF"],
   },
 ];
 

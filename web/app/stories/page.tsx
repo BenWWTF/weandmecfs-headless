@@ -38,7 +38,7 @@ export default async function StoriesPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <main>
-        <section className="mx-auto max-w-[1400px] px-5 pt-10 pb-10 md:px-10 md:pt-16">
+        <section className="mx-auto max-w-[1200px] px-5 pt-10 pb-10 md:px-12 md:pt-16">
           <p className="sticker bg-empathy mb-6">Stories of people affected</p>
           <h1 className="headline text-[clamp(3rem,10vw,9rem)]">
             LIFE WITH
@@ -52,7 +52,7 @@ export default async function StoriesPage() {
         </section>
 
         {featured.length > 0 && (
-          <section className="mx-auto max-w-[1400px] px-5 pb-16 md:px-10 md:pb-24 space-y-16 md:space-y-28">
+          <section className="mx-auto max-w-[1200px] px-5 pb-16 md:px-12 md:pb-24 space-y-16 md:space-y-28">
             {featured.map((s, i) => {
               const name = decodeHtml(s.title.rendered);
               const firstName = name.split(" ")[0];
@@ -66,7 +66,7 @@ export default async function StoriesPage() {
               return (
                 <article
                   key={s.id}
-                  className={`grid gap-6 md:grid-cols-12 md:gap-10 ${i % 2 === 1 ? "md:[&>figure]:order-2" : ""}`}
+                  className={`grid gap-6 md:grid-cols-12 md:gap-10 lg:items-center lg:gap-x-16 ${i % 2 === 1 ? "md:[&>figure]:order-2" : ""}`}
                 >
                   <figure className="md:col-span-6">
                     <div
@@ -120,7 +120,7 @@ export default async function StoriesPage() {
         )}
 
         {more.length > 0 && (
-          <section className="mx-auto max-w-[1400px] px-5 pb-24 md:px-10">
+          <section className="mx-auto max-w-[1200px] px-5 pb-24 md:px-12">
             <h2 className="headline text-[clamp(1.75rem,4vw,3rem)] mb-6">
               More stories
             </h2>
@@ -148,7 +148,7 @@ export default async function StoriesPage() {
           </section>
         )}
 
-        <section className="mx-auto max-w-[1400px] px-5 pb-24 md:px-10">
+        <section className="mx-auto max-w-[1200px] px-5 pb-24 md:px-12">
           <div className="rounded-[2rem] border border-ink bg-blue p-8 text-white md:p-14 flex flex-wrap items-end justify-between gap-6">
             <h2 className="headline text-[clamp(2rem,5vw,3.5rem)] max-w-xl">
               Share your story.

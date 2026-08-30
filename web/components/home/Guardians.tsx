@@ -30,18 +30,18 @@ export async function Guardians() {
 
   return (
     <section className="bg-white">
-      <div className="mx-auto w-full max-w-[1200px] px-7 py-12 md:px-12">
-        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue">
+      <div className="mx-auto w-full max-w-[1200px] px-7 py-12 md:grid md:grid-cols-12 md:gap-x-14 md:px-12">
+        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue md:col-span-6 md:col-start-1 md:row-start-1">
           Guardians4ME
         </p>
-        <h2 className="headline mt-3 text-[34px] md:text-[52px] leading-[1] tracking-[-0.01em]">
+        <h2 className="headline mt-3 text-[34px] md:text-[52px] leading-[1] tracking-[-0.01em] md:col-span-6 md:col-start-1 md:row-start-2 lg:text-[60px]">
           They&rsquo;re out
           <br />
           of energy.
           <br />
           You&rsquo;re not.
         </h2>
-        <p className="mt-4 max-w-[34ch] text-[17px] leading-[1.45] text-ink/85">
+        <p className="mt-4 max-w-[34ch] text-[17px] leading-[1.45] text-ink/85 md:col-span-5 md:col-start-8 md:row-start-2 md:mt-0 md:max-w-[34ch] md:self-end md:text-[18px]">
           Guardians lend theirs. They show up, speak up and keep ME/CFS visible
           where patients can&rsquo;t.
         </p>
@@ -49,12 +49,12 @@ export async function Guardians() {
           href={GUARDIAN_URL}
           target="_blank"
           rel="noreferrer"
-          className="mt-6 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-bold text-white transition hover:opacity-90"
+          className="mt-6 inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-blue px-7 text-[18px] font-bold text-white transition hover:opacity-90 md:col-span-5 md:col-start-8 md:row-start-3 md:mt-6 md:justify-self-start md:self-start"
         >
           Become a Guardian
         </a>
 
-        <div className="-mx-7 mt-8 flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-1 pl-7 pr-7 [scroll-padding-left:28px] [scroll-padding-right:28px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:p-0 items-stretch">
+        <div className="-mx-7 mt-8 flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-1 pl-7 pr-7 [scroll-padding-left:28px] [scroll-padding-right:28px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:p-0 items-stretch md:col-span-12 md:col-start-1 md:row-start-4 md:mt-14">
           {guardians.map((g) => {
             const initials = g.name
               .split(/\s+/)
