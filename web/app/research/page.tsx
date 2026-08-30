@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getCalls, getProjects } from "@/lib/wp";
 import { formatEuro } from "@/lib/utils";
 import { decodeHtml } from "@/lib/decode";
 import { Reveal } from "@/components/site/Reveal";
 import { PageCTA } from "@/components/site/PageCTA";
+import { Split } from "@/components/site/Split";
 
 export const revalidate = 300;
 
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
 const EYEBROW =
   "text-[11px] font-bold uppercase tracking-[0.08em] text-blue";
 const HEADLINE =
-  "headline text-[34px] md:text-[52px] font-bold leading-[1] tracking-[-0.01em]";
+  "headline text-[34px] md:text-[52px] lg:text-[40px] font-bold leading-[1] tracking-[-0.01em]";
 const SUBHEAD = "headline text-[22px] font-bold leading-[1.1]";
 const BODY = "text-[17px] leading-[1.45] text-ink/85";
 const WRAP = "mx-auto w-full max-w-[1200px] px-7 py-16 md:px-12";
@@ -540,123 +542,130 @@ export default async function ResearchPage() {
         {/* ------------------------------------------------------ strategy */}
         <section id="strategy" className="scroll-mt-24 bg-white">
           <Reveal className={WRAP}>
-            <p className={EYEBROW}>Research strategy</p>
-            <h1 className={`${HEADLINE} mt-3`}>
-              Five principles.
-              <br />
-              One goal.
-            </h1>
-            <div className={`mt-6 ${BODY} max-w-[65ch] space-y-5`}>
-              <p>
-                ME/CFS remains one of the most underfunded diseases in medicine
-                relative to its burden: few dedicated centres, no approved
-                treatments, researchers working in isolation on scattered
-                grants. Only now is that beginning to change. Public funders,
-                above all in Germany, are investing at a scale the field has
-                never seen, and the DACH region is becoming a centre of gravity
-                for ME/CFS research.
-              </p>
-              <p>
-                New institutional money, though, flows into old structures.
-                Research funding is organised country by country: every fund
-                is bounded by national tax rules and mandates, every
-                university and region decides for itself what to build, and
-                even EU-level projects must serve many constituencies at once.
-                Each level of the system optimises for its own goals. None is
-                accountable for the one measure that matters to patients: how
-                fast this disease gets solved.
-              </p>
-              <p>
-                That measure is ours. WE&amp;ME optimises for time to a cure:
-                not for any country&rsquo;s research budget, not for any
-                institution&rsquo;s standing. Institutional and private
-                funding are different routes to that goal, neither better nor
-                worse, and strongest when they complement each other.
-                Institutional programmes bring scale and continuity, and must
-                balance many interests to do so. Private funding can
-                concentrate, move across borders, and place the bets the
-                system leaves open. We are built to use that freedom: our
-                running costs are covered, our calls are operated by the FWF
-                and the WWTF, two of the most prestigious research funding
-                organisations in Central Europe, with patient experts embedded
-                throughout, and we are bound to no border. There is no optimal
-                strategy for a disease this incompletely understood, so we
-                hold ourselves to the next best thing: five principles that
-                govern every euro we allocate.
-              </p>
-            </div>
+            <Split
+              left={
+                <>
+                  <p className={EYEBROW}>Research strategy</p>
+                  <h1 className={`${HEADLINE} mt-3`}>
+                    Five principles.
+                    <br />
+                    One goal.
+                  </h1>
+                </>
+              }
+            >
+              <div className={`mt-6 ${BODY} max-w-[65ch] space-y-5`}>
+                <p>
+                  ME/CFS remains one of the most underfunded diseases in medicine
+                  relative to its burden: few dedicated centres, no approved
+                  treatments, researchers working in isolation on scattered
+                  grants. Only now is that beginning to change. Public funders,
+                  above all in Germany, are investing at a scale the field has
+                  never seen, and the DACH region is becoming a centre of gravity
+                  for ME/CFS research.
+                </p>
+                <p>
+                  New institutional money, though, flows into old structures.
+                  Research funding is organised country by country: every fund
+                  is bounded by national tax rules and mandates, every
+                  university and region decides for itself what to build, and
+                  even EU-level projects must serve many constituencies at once.
+                  Each level of the system optimises for its own goals. None is
+                  accountable for the one measure that matters to patients: how
+                  fast this disease gets solved.
+                </p>
+                <p>
+                  That measure is ours. WE&amp;ME optimises for time to a cure:
+                  not for any country&rsquo;s research budget, not for any
+                  institution&rsquo;s standing. Institutional and private
+                  funding are different routes to that goal, neither better nor
+                  worse, and strongest when they complement each other.
+                  Institutional programmes bring scale and continuity, and must
+                  balance many interests to do so. Private funding can
+                  concentrate, move across borders, and place the bets the
+                  system leaves open. We are built to use that freedom: our
+                  running costs are covered, our calls are operated by the FWF
+                  and the WWTF, two of the most prestigious research funding
+                  organisations in Central Europe, with patient experts embedded
+                  throughout, and we are bound to no border. There is no optimal
+                  strategy for a disease this incompletely understood, so we
+                  hold ourselves to the next best thing: five principles that
+                  govern every euro we allocate.
+                </p>
+              </div>
 
-            <Reveal as="ol" className="mt-8 divide-y divide-ink/15 border-t border-b border-ink/15">
-              {principles.map((p) => (
-                <li
-                  key={p.n}
-                  className="grid grid-cols-[auto_1fr] gap-x-5 md:gap-x-8 py-5 md:py-7"
-                >
-                  <span className="headline text-2xl md:text-4xl text-blue tabular-nums">
-                    {p.n}
-                  </span>
-                  <div>
-                    <h2 className={SUBHEAD}>{p.title}</h2>
-                    <p className={`mt-2 ${BODY} max-w-[60ch]`}>{p.body}</p>
-                  </div>
-                </li>
-              ))}
-            </Reveal>
+              <Reveal as="ol" className="mt-8 divide-y divide-ink/15 border-t border-b border-ink/15">
+                {principles.map((p) => (
+                  <li
+                    key={p.n}
+                    className="grid grid-cols-[auto_1fr] gap-x-5 md:gap-x-8 py-5 md:py-7"
+                  >
+                    <span className="headline text-2xl md:text-4xl text-blue tabular-nums">
+                      {p.n}
+                    </span>
+                    <div>
+                      <h2 className={SUBHEAD}>{p.title}</h2>
+                      <p className={`mt-2 ${BODY} max-w-[60ch]`}>{p.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </Reveal>
 
-            <div className="mt-10 max-w-[65ch] text-[17px] leading-[1.5] text-ink/85 space-y-5">
-              <p>
-                Our work runs in three strands. The first is allocation across
-                borders, in both directions. Outward, we allocate pooled private
-                funding internationally, to the strongest centres of expertise
-                wherever they are, through a selection process operated by the
-                WWTF, with patient experts from Science for ME on the jury.
-                Inward, we are building Vienna into a centre of expertise
-                together with the WWTF and the City of Vienna, where incoming
-                international funding can be doubled through local co-financing.
-                Our named instruments span both directions. The{" "}
-                <a href="#projects" className="text-blue no-underline hover:opacity-80">
-                  WE&amp;ME Projects
-                </a>
-                , the{" "}
-                <a href="#award" className="text-blue no-underline hover:opacity-80">
-                  WE&amp;ME Emerging Leader Award
-                </a>{" "}
-                and the{" "}
-                <a href="#fellowships" className="text-blue no-underline hover:opacity-80">
-                  ME/CFS Fellowships
-                </a>{" "}
-                allocate internationally; the ME/CFS Consolidation Call with the
-                WWTF and the{" "}
-                <a href="#weme-award" className="text-blue no-underline hover:opacity-80">
-                  WE&amp;ME Award
-                </a>{" "}
-                with the FWF strengthen the national base.
-              </p>
-              <p>
-                The second is coordination. Germany, Austria and Switzerland are
-                becoming a new force in ME/CFS research; our work is to make the
-                region act like one, connecting programmes and infrastructure
-                so they scale instead of duplicating. But no region solves this
-                alone: a cure will also need far greater investment in the United
-                States and China. So we coordinate with partners in the US where
-                it helps, and we are beginning to build ties within the research
-                field in China.
-              </p>
-              <p>
-                The third is the frontier. We are setting up working groups to
-                map where ME/CFS research should go next: which scopes deserve
-                funding, and the questions of strategy, geographical and
-                constituency scales, incentives and coordination that come with
-                them.
-              </p>
-            </div>
+              <div className="mt-10 max-w-[65ch] text-[17px] leading-[1.5] text-ink/85 space-y-5">
+                <p>
+                  Our work runs in three strands. The first is allocation across
+                  borders, in both directions. Outward, we allocate pooled private
+                  funding internationally, to the strongest centres of expertise
+                  wherever they are, through a selection process operated by the
+                  WWTF, with patient experts from Science for ME on the jury.
+                  Inward, we are building Vienna into a centre of expertise
+                  together with the WWTF and the City of Vienna, where incoming
+                  international funding can be doubled through local co-financing.
+                  Our named instruments span both directions. The{" "}
+                  <a href="#projects" className="text-blue no-underline hover:opacity-80">
+                    WE&amp;ME Projects
+                  </a>
+                  , the{" "}
+                  <a href="#award" className="text-blue no-underline hover:opacity-80">
+                    WE&amp;ME Emerging Leader Award
+                  </a>{" "}
+                  and the{" "}
+                  <a href="#fellowships" className="text-blue no-underline hover:opacity-80">
+                    ME/CFS Fellowships
+                  </a>{" "}
+                  allocate internationally; the ME/CFS Consolidation Call with the
+                  WWTF and the{" "}
+                  <a href="#weme-award" className="text-blue no-underline hover:opacity-80">
+                    WE&amp;ME Award
+                  </a>{" "}
+                  with the FWF strengthen the national base.
+                </p>
+                <p>
+                  The second is coordination. Germany, Austria and Switzerland are
+                  becoming a new force in ME/CFS research; our work is to make the
+                  region act like one, connecting programmes and infrastructure
+                  so they scale instead of duplicating. But no region solves this
+                  alone: a cure will also need far greater investment in the United
+                  States and China. So we coordinate with partners in the US where
+                  it helps, and we are beginning to build ties within the research
+                  field in China.
+                </p>
+                <p>
+                  The third is the frontier. We are setting up working groups to
+                  map where ME/CFS research should go next: which scopes deserve
+                  funding, and the questions of strategy, geographical and
+                  constituency scales, incentives and coordination that come with
+                  them.
+                </p>
+              </div>
+            </Split>
           </Reveal>
         </section>
 
         {/* ------------------------------------------------ strategy closing */}
         <section className="bg-empathy text-ink">
           <Reveal className={WRAP}>
-            <p className="headline text-[28px] md:text-[44px] font-bold uppercase leading-[1] tracking-[-0.01em] max-w-[24ch]">
+            <p className="headline text-[28px] md:text-[44px] lg:text-[52px] font-bold uppercase leading-[1] tracking-[-0.01em] max-w-[24ch]">
               Everything we allocate and everything we coordinate serves one
               clock: time to a cure.
             </p>
@@ -666,12 +675,18 @@ export default async function ResearchPage() {
         {/* ------------------------------------------------------ projects */}
         <section id="projects" className="scroll-mt-24 bg-empathy">
           <Reveal className={WRAP}>
-            <p className={EYEBROW}>WE&amp;ME Projects</p>
-            <h2 className={`${HEADLINE} mt-3`}>
-              What we fund.
-              <br />
-              And how.
-            </h2>
+            <Split
+              left={
+                <>
+                  <p className={EYEBROW}>WE&amp;ME Projects</p>
+                  <h2 className={`${HEADLINE} mt-3`}>
+                    What we fund.
+                    <br />
+                    And how.
+                  </h2>
+                </>
+              }
+            >
             <p className={`mt-5 ${BODY} max-w-[60ch]`}>
               This call is open to research teams that aim to advance our
               understanding of the biological mechanisms of Myalgic
@@ -807,18 +822,25 @@ export default async function ResearchPage() {
             <p className="mt-6 text-[14px] leading-[1.5] text-ink/55 max-w-[68ch]">
               {DISCLAIMER}
             </p>
+            </Split>
           </Reveal>
         </section>
 
         {/* ------------------------------------------------------- award */}
         <section id="award" className="scroll-mt-24 bg-white">
           <Reveal className={WRAP}>
-            <p className={EYEBROW}>WE&amp;ME Emerging Leader Award</p>
-            <h2 className={`${HEADLINE} mt-3`}>
-              New leaders
-              <br />
-              for ME/CFS.
-            </h2>
+            <Split
+              left={
+                <>
+                  <p className={EYEBROW}>WE&amp;ME Emerging Leader Award</p>
+                  <h2 className={`${HEADLINE} mt-3`}>
+                    New leaders
+                    <br />
+                    for ME/CFS.
+                  </h2>
+                </>
+              }
+            >
             <p className={`mt-5 ${BODY} max-w-[60ch]`}>
               The WE&amp;ME Emerging Leader Award recognises outstanding
               early-career researchers who combine scientific excellence with
@@ -899,14 +921,21 @@ export default async function ResearchPage() {
             <p className="mt-6 text-[14px] leading-[1.5] text-ink/55 max-w-[68ch]">
               {DISCLAIMER}
             </p>
+            </Split>
           </Reveal>
         </section>
 
         {/* ------------------------------------------------- weme-award */}
         <section id="weme-award" className="scroll-mt-24 bg-white">
           <Reveal className={WRAP}>
-            <p className={EYEBROW}>WE&amp;ME Award</p>
-            <h2 className={`${HEADLINE} mt-3`}>Excellence in ME/CFS research.</h2>
+            <Split
+              left={
+                <>
+                  <p className={EYEBROW}>WE&amp;ME Award</p>
+                  <h2 className={`${HEADLINE} mt-3`}>Excellence in ME/CFS research.</h2>
+                </>
+              }
+            >
             <p className={`mt-4 ${BODY} max-w-[60ch]`}>
               Awarded with the FWF through its alpha+ Foundation. The 2026 award
               of €450,000 goes to Matthias Wielscher of the Medical University
@@ -920,18 +949,25 @@ export default async function ResearchPage() {
             >
               The winning project →
             </a>
+            </Split>
           </Reveal>
         </section>
 
         {/* ------------------------------------------------- fellowships */}
         <section id="fellowships" className="scroll-mt-24 bg-empathy">
           <Reveal className={WRAP}>
-            <p className={EYEBROW}>ME/CFS Fellowships</p>
-            <h2 className={`${HEADLINE} mt-3`}>
-              Time to do
-              <br />
-              the science.
-            </h2>
+            <Split
+              left={
+                <>
+                  <p className={EYEBROW}>ME/CFS Fellowships</p>
+                  <h2 className={`${HEADLINE} mt-3`}>
+                    Time to do
+                    <br />
+                    the science.
+                  </h2>
+                </>
+              }
+            >
             <p className={`mt-5 ${BODY} max-w-[60ch]`}>
               With this funding instrument, the WE&amp;ME Foundation and the
               WWTF support accompanying projects on a smaller scale, primarily
@@ -986,19 +1022,25 @@ export default async function ResearchPage() {
                 label="Fellowships announcement"
               />
             </div>
+            </Split>
           </Reveal>
         </section>
 
         {/* ---------------------------------------------- funded research */}
         <section id="funded" className="scroll-mt-24 bg-white">
           <Reveal className={WRAP}>
-            <p className={EYEBROW}>Funded research</p>
-            <h2 className={`${HEADLINE} mt-3`}>
-              Every project.
-              <br />
-              One list.
-            </h2>
-
+            <Split
+              left={
+                <>
+                  <p className={EYEBROW}>Funded research</p>
+                  <h2 className={`${HEADLINE} mt-3`}>
+                    Every project.
+                    <br />
+                    One list.
+                  </h2>
+                </>
+              }
+            >
             {featuredProjects.length > 0 && (
               <>
                 <p className={`mt-5 ${BODY} max-w-[60ch]`}>
@@ -1006,6 +1048,12 @@ export default async function ResearchPage() {
                   wp-admin under <code>Funded Projects</code> and shows up here
                   the moment an editor saves a change.
                 </p>
+                <Link
+                  href="/funded-research"
+                  className="mt-4 inline-flex items-center text-[16px] font-semibold text-blue no-underline hover:opacity-80"
+                >
+                  Explore our funded research →
+                </Link>
                 <ul className="mt-8 divide-y divide-ink/15 border-t border-b border-ink/15">
                   {featuredProjects.map((p) => (
                     <li
@@ -1069,18 +1117,25 @@ export default async function ResearchPage() {
                 ))}
               </ol>
             </Block>
+            </Split>
           </Reveal>
         </section>
 
         {/* --------------------------------------------------- proposals */}
         <section id="proposals" className="scroll-mt-24 bg-mint">
           <Reveal className={WRAP}>
-            <p className={EYEBROW}>Call for proposals</p>
-            <h2 className={`${HEADLINE} mt-3`}>
-              Open calls.
-              <br />
-              Get in touch.
-            </h2>
+            <Split
+              left={
+                <>
+                  <p className={EYEBROW}>Call for proposals</p>
+                  <h2 className={`${HEADLINE} mt-3`}>
+                    Open calls.
+                    <br />
+                    Get in touch.
+                  </h2>
+                </>
+              }
+            >
             <p className={`mt-5 ${BODY} max-w-[60ch]`}>
               WE&amp;ME Projects and the WE&amp;ME Emerging Leader Award are
               currently open. If you are planning a proposal, have a question
@@ -1138,6 +1193,7 @@ export default async function ResearchPage() {
                 label="Submit an application"
               />
             </div>
+            </Split>
           </Reveal>
         </section>
       </main>

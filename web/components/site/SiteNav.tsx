@@ -46,7 +46,7 @@ const groups: Group[] = [
       { label: "WE&ME Projects",              href: "/research#projects" },
       { label: "WE&ME Emerging Leader Award", href: "/research#award" },
       { label: "ME/CFS Fellowships",          href: "/research#fellowships" },
-      { label: "All funded research",         href: "/research#funded" },
+      { label: "All funded research",         href: "/funded-research" },
       { label: "Call for proposals",          href: "/research#proposals" },
     ],
   },
@@ -62,12 +62,6 @@ const groups: Group[] = [
     ],
   },
   {
-    label: "Notes on ME/CFS",
-    href: "/blog",
-    hash: "notes",
-    items: [],
-  },
-  {
     label: "Support",
     href: "/support",
     items: [
@@ -76,6 +70,12 @@ const groups: Group[] = [
       { label: "Awareness & Information Materials", href: "/support#materials" },
       { label: "Shop",                        href: "/shop", tag: "Soon" },
     ],
+  },
+  {
+    label: "Notes on ME/CFS",
+    href: "/blog",
+    hash: "notes",
+    items: [],
   },
 ];
 

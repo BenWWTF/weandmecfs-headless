@@ -43,20 +43,20 @@ export async function Stories() {
 
   return (
     <section className="bg-white">
-      <div className="mx-auto w-full max-w-[1200px] px-7 py-16 md:px-12">
-        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue">
+      <div className="mx-auto w-full max-w-[1200px] px-7 py-16 md:grid md:grid-cols-12 md:gap-x-14 md:px-12">
+        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue md:col-span-7 md:col-start-1 md:row-start-1">
           Life with ME/CFS
         </p>
-        <h2 className="headline mt-3 text-[34px] md:text-[52px] leading-[1] tracking-[-0.01em]">
+        <h2 className="headline mt-3 text-[34px] md:text-[52px] leading-[1] tracking-[-0.01em] md:col-span-7 md:col-start-1 md:row-start-2">
           Real people. Real stakes.
         </h2>
-        <p className="mt-5 text-[17px] leading-[1.45] text-ink/85 max-w-[34ch]">
+        <p className="mt-5 text-[17px] leading-[1.45] text-ink/85 max-w-[34ch] md:col-span-5 md:col-start-8 md:row-start-2 md:mt-0 md:max-w-[34ch] md:self-end md:text-[18px]">
           Ten days, ten families: award-winning press photographer Brent
           Stirton travelled through four Austrian provinces to document life
           with ME/CFS.
         </p>
 
-        <div className="-mx-7 mt-8 flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-1 pl-7 pr-7 [scroll-padding-left:28px] [scroll-padding-right:28px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:p-0">
+        <div className="-mx-7 mt-8 flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-1 pl-7 pr-7 [scroll-padding-left:28px] [scroll-padding-right:28px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:p-0 md:col-span-12 md:col-start-1 md:row-start-3 md:mt-12">
           {stories.map((s, i) => (
             <a
               key={s.name}
@@ -89,12 +89,12 @@ export async function Stories() {
 
         <Link
           href="/stories"
-          className="mt-6 inline-flex items-center gap-1.5 text-[17px] font-semibold text-blue"
+          className="mt-6 inline-flex items-center gap-1.5 text-[17px] font-semibold text-blue md:col-span-12 md:col-start-1 md:row-start-4 md:justify-self-start"
         >
           Living with ME/CFS →
         </Link>
 
-        <p className="mt-4 text-[14px] text-ink/55">
+        <p className="mt-4 text-[14px] text-ink/55 md:col-span-12 md:col-start-1 md:row-start-5">
           Photos: Brent Stirton · Texts: Rudolf Anschober &amp; Emilia Garbsch
         </p>
       </div>

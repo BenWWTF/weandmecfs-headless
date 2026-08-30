@@ -16,17 +16,15 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger, DrawSVGPlugin);
 }
 
-const INK = "#0a0a0a";
 const RAIL_LINE = "#D9DDDB";
-const MUTED = "#6B6B6B";
 const NODE_LABEL = "text-[11px] uppercase tracking-[0.08em] text-[#6B6B6B]";
 const NODE_STATEMENT =
-  "mt-2 text-[22px] font-semibold leading-[1.2] tabular-nums text-[#0a0a0a]";
-const NODE_DETAIL = "mt-2 text-[16px] leading-[1.5] text-[#0a0a0a]/80 max-w-[46ch]";
+  "mt-2 text-[22px] lg:text-[28px] font-semibold leading-[1.2] tabular-nums text-[#0a0a0a]";
+const NODE_DETAIL = "mt-2 text-[16px] lg:text-[17px] leading-[1.5] text-[#0a0a0a]/80 max-w-[46ch]";
 const NODE_LINK = "mt-4 inline-flex text-[16px] text-blue font-semibold no-underline";
 const RULE = "border-[#0a0a0a]/12";
 
-const ONE_TIME_AMOUNTS = [25, 50, 100, 250];
+const ONE_TIME_AMOUNTS = [25, 50, 75, 100, 250];
 const MONTHLY_AMOUNTS = [10, 20, 50];
 
 /* NOTE: confirm the `rnw-amount`, `rnw-payment_type` and
@@ -219,7 +217,7 @@ function NodeContent({
         <div
           role="radiogroup"
           aria-label="Donation frequency"
-          className="mt-5 inline-flex w-fit items-center gap-0 rounded-[10px] border border-[#0a0a0a] p-[3px]"
+          className="mt-5 inline-grid w-fit grid-cols-2 gap-0 rounded-[10px] border border-ink p-[3px]"
         >
           {(["one-time", "monthly"] as const).map((f) => (
             <button
@@ -228,7 +226,7 @@ function NodeContent({
               role="radio"
               aria-checked={frequency === f}
               onClick={() => switchFrequency(f)}
-              className={`h-[36px] w-[92px] rounded-[7px] px-4 text-[15px] font-bold tabular-nums transition-colors ${
+              className={`h-[36px] whitespace-nowrap rounded-[7px] px-5 text-center text-[15px] font-bold tabular-nums transition-colors ${
                 frequency === f
                   ? "bg-ink text-white"
                   : "bg-transparent text-ink"
@@ -249,7 +247,9 @@ function NodeContent({
         <div
           role="group"
           aria-label="Donation amount"
-          className="mt-4 grid grid-cols-3 gap-2 md:grid-flow-col md:auto-cols-fr md:max-w-[560px]"
+          className={`mt-4 gap-2 md:grid-flow-col md:auto-cols-fr md:max-w-[620px] ${
+            isMonthly ? "grid grid-cols-2" : "grid grid-cols-3"
+          }`}
         >
           {amounts.map((a) => (
             <button
@@ -303,7 +303,9 @@ function NodeContent({
 
         {/* caption */}
         <p className="mt-4 max-w-[46ch] text-[13px] leading-[1.5] text-[#0a0a0a]/55">
-          The Ströck family covers all running costs of WE&amp;ME.
+          100% to research. The Ströck family covers all running costs.
+          <br />
+          Tax-deductible in Austria and Germany · Secure payment
         </p>
       </>
     );
@@ -431,6 +433,9 @@ function NodeContent({
         </Details>
         <Link href="/research#strategy" className={NODE_LINK}>
           Our research strategy →
+        </Link>
+        <Link href="/funded-research" className={`${NODE_LINK} block`}>
+          Explore our funded research →
         </Link>
       </>
     );
@@ -733,7 +738,7 @@ export function WhyFund({ projects }: { projects: Project[] }) {
 
   return (
     <section ref={root} className="w-full bg-white text-[#0a0a0a]">
-      <div className="mx-auto w-full max-w-[1080px] px-7 pt-16 pb-16 lg:px-12">
+      <div className="mx-auto w-full max-w-[1080px] px-7 pt-16 pb-16 lg:max-w-[1200px] lg:px-12 lg:pt-24 lg:pb-24">
         <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue">
           At a glance
         </p>
@@ -801,63 +806,43 @@ export function WhyFund({ projects }: { projects: Project[] }) {
           </div>
         </div>
 
-        {/* Desktop */}
-        <div className="mt-12 hidden lg:flex lg:gap-12">
-          <div className="w-[40%]">
-            <div className="sticky top-[120px]">
-              <div className="relative pl-[26px]">
+        {/* Desktop: single column, rail attached to the content */}
+        <div className="relative mt-16 hidden lg:block">
+          <span
+            aria-hidden
+            className="pointer-events-none absolute left-0 top-[10px] bottom-[10px] w-px bg-[#D9DDDB]"
+          />
+          <div className="flex flex-col gap-24 pl-[40px]">
+            {NODES.map(({ id, label }, i) => (
+              <div
+                key={label}
+                className="relative"
+                ref={(el) => {
+                  blockRefs.current[i] = el;
+                }}
+              >
                 <span
                   aria-hidden
-                  className="absolute left-0 top-[9px] h-[calc(100%-18px)] w-px bg-[#D9DDDB]"
+                  className="absolute left-[-40px] top-[6px] h-3 w-3 -translate-x-1/2 rounded-full bg-[#0a0a0a] transition-opacity duration-300"
+                  style={{ opacity: active === i ? 1 : 0.3 }}
                 />
-                <ul className="flex flex-col gap-8">
-                  {NODES.map(({ label }, i) => (
-                    <li key={label} className="relative">
-                      <span
-                        aria-hidden
-                        className="absolute -left-[26px] top-[4px] h-2.5 w-2.5 -translate-x-[4.5px] rounded-full bg-[#0a0a0a] transition-opacity duration-300"
-                        style={{ opacity: active === i ? 1 : 0.3 }}
-                      />
-                      <span
-                        className="text-[11px] uppercase tracking-[0.08em] transition-colors duration-300"
-                        style={{ color: active === i ? INK : MUTED }}
-                      >
-                        {label}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-[60%]">
-            <div className="flex flex-col gap-24">
-              {NODES.map(({ id, label }, i) => (
-                <div
-                  key={label}
-                  ref={(el) => {
-                    blockRefs.current[i] = el;
-                  }}
-                >
-                  <div data-node-block>
-                    <p className={NODE_LABEL}>{label}</p>
-                    <NodeContent
-                      id={id}
-                      amount={amount}
-                      setAmount={setAmount}
-                      custom={custom}
-                      setCustom={setCustom}
-                      frequency={frequency}
-                      switchFrequency={switchFrequency}
-                      reduced={reduced}
-                      projects={projects}
-                      totalM={totalM}
-                    />
-                  </div>
+                <div data-node-block>
+                  <p className={NODE_LABEL}>{label}</p>
+                  <NodeContent
+                    id={id}
+                    amount={amount}
+                    setAmount={setAmount}
+                    custom={custom}
+                    setCustom={setCustom}
+                    frequency={frequency}
+                    switchFrequency={switchFrequency}
+                    reduced={reduced}
+                    projects={projects}
+                    totalM={totalM}
+                  />
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

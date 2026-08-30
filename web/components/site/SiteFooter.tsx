@@ -7,8 +7,9 @@ const foundation: Item[] = [
   { label: "About Us",         href: "/foundation" },
   { label: "Team & boards",    href: "/foundation#team" },
   { label: "What is ME/CFS?",  href: "/about" },
-  { label: "Funded research",  href: "/research" },
+  { label: "Funded research",  href: "/funded-research" },
   { label: "Annual reports",   href: "/foundation#transparency" },
+  { label: "Press",            href: "#" },
 ];
 
 const involved: Item[] = [
